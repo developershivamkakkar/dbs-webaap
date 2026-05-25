@@ -1,0 +1,657 @@
+@extends('layouts.app')
+
+@section('title', 'Dbels- Best School in Panchkula & Tricity Chandigarh')
+
+@section('meta-description',
+    'Dass & Brown Experiential Learning School (Dbels), the best school in Panchkula and
+    Chandigarh')
+
+
+@section('meta-keywords',
+    'Dbels, Dass and Brown School, Best School in Panchkula, Best School in Chandigarh, Top
+    Schools in Panchkula, Top Schools in Chandigarh, Best ICSE School Panchkula, Best ICSE School Chandigarh, Best Cambridge
+    School Panchkula, Cambridge Schools Chandigarh, International Schools Panchkula, International Schools Chandigarh, Best
+    K-12 School Panchkula, Finnish Model School Panchkula, , Experiential Learning School, Global Curriculum Schools, Early
+    Education Panchkula, Private Schools in Panchkula, English Medium School Panchkula, Dbels Panchkula, Dbels Chandigarh,
+    Dass & Brown Experiential Learning School')
+
+@section('content')
+
+    {{-- Popups Section --}}
+    @if (count($popups) > 0)
+        {{-- Popup Modal --}}
+        <div id="popupModal" class="modal fade" tabindex="-1" aria-labelledby="popupModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        {{-- Bootstrap Carousel --}}
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <div id="popupCarousel" class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-inner">
+                                @foreach ($popups as $key => $popup)
+                                    <div class="carousel-item @if ($key === 0) active @endif">
+                                        <img src="{{ Storage::url($popup->image) }}" class="d-block w-100 img-fluid"
+                                            alt="Popup Image">
+                                    </div>
+                                @endforeach
+                            </div>
+                            {{-- Carousel Controls --}}
+                            <button class="carousel-control-prev" type="button" data-bs-target="#popupCarousel"
+                                data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#popupCarousel"
+                                data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
+
+    <!-- Floating Strip Right Bottom -->
+    <div class="floating-strip-right-bottom">
+        <!-- Open Modal -->
+        <a href="/brochure" class="btn btn-sm" data-bs-toggle="modal" data-bs-target="#brochureModal"
+            onclick="event.preventDefault();">
+            Download Brochure
+        </a>
+    </div>
+    <!-- Floating Strip Right -->
+    <div class="floating-strip-right">
+        <a class="btn btn-sm" target="_blank" href="https://admissions.dassandbrownschool.com/">Register Now</a>
+    </div>
+
+    <!--Floating Strip Left-->
+    <!--<div class="floating-left-strip">-->
+    <!--    <a class="btn btn-sm" href="{{ route('job-form.get') }}">Careers</a>-->
+    <!--</div>-->
+
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://api.whatsapp.com/send/?phone=9115992924&text=Hello%20Dass%20and%20Brown%20Experiential%20Learning%20School&type=phone_number&app_absent=0"
+        class="whatsapp-button" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+        Contact Us
+    </a>
+
+
+    {{-- Success Modal --}}
+    <!--<div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">-->
+    <!--    <div class="modal-dialog modal-custom-width">-->
+    <!--        <div class="modal-content">-->
+    <!--            <div class="modal-header" style="background-color:rgb(26,79,156)">-->
+    <!--                <h5 style="color: white;" class="modal-title" id="successModalLabel">Success</h5>-->
+    <!--                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
+    <!--            </div>-->
+    <!--            <div class="modal-body">-->
+    <!--                <i class="fas fa-check-circle"></i>-->
+    <!--                <p>Thank you for contacting us.</p>-->
+    <!--                <p>Your enquiry has been submitted successfully! We will contact you shortly</p>-->
+    <!--            </div>-->
+    <!--        </div>-->
+    <!--    </div>-->
+    <!--</div>-->
+    <!--@if (Session::has('success'))
+    -->
+    <!--    <div id="contact-alert" class="alert alert-success" style="display: none;" data-bs-toggle="modal"-->
+    <!--        data-bs-target="#successModal">-->
+    <!--        {{ Session::get('success') }}-->
+    <!--    </div>-->
+    <!--
+    @endif-->
+
+    {{-- Model to Show on Enquire Now --}}
+    <!--<div class="modal fade" id="enquiryModal" tabindex="-1" aria-labelledby="enquiryModalLabel" aria-hidden="true">-->
+    <!--    <div class="modal-dialog model-sm">-->
+    <!--        <div class="modal-content">-->
+    <!--            <div class="modal-header" style="background: linear-gradient(30deg, #0C54A0, #027C3F, #E31E25, #FF9A14);";>-->
+    <!--                <h5 class="modal-title" id="enquiryModalLabel" style="color: white;">Enquire Now</h5>-->
+    <!--                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
+    <!--            </div>-->
+    <!--            <div class="modal-body">-->
+    <!-- Your form goes here -->
+    <!--                <form method="POST" action="{{ route('contact.store') }}" enctype="multipart/form-data">-->
+    <!--                    @csrf-->
+    <!--                    <div class="text-center">-->
+    <!--                        <img class="rounded" src="{{ asset('storage/assets/dbs.png') }}" alt="dbels-logo"-->
+    <!--                            style="width:100px;height:100px; background-color:#ffffff00; object-fit:contain;">-->
+    <!--                    </div>-->
+    <!--                    <div class="mb-2 mt-1">-->
+    <!--                        <label class="enquiry-model-field mt-2" for="name" class="form-label"> Name <span-->
+    <!--                                class="text-danger">*</span></label>-->
+    <!--                        <input type="text" class="form-control" id="name" placeholder="Enter name"-->
+    <!--                            name="name" required>-->
+    <!--                        @error('name')
+        -->
+        <!--                            <div class="text-danger">{{ $message }}</div>-->
+        <!--
+    @enderror-->
+    <!--                    </div>-->
+    <!--                    <div class="mb-2">-->
+    <!--                        <label class="enquiry-model-field mt-2" for="email" class="form-label"> Email <span-->
+    <!--                                class="text-danger">*</span></label>-->
+    <!--                        <input type="email" class="form-control" id="email" placeholder="Enter Email"-->
+    <!--                            name="email" required>-->
+    <!--                        @error('email')
+        -->
+        <!--                            <div class="text-danger">{{ $message }}</div>-->
+        <!--
+    @enderror-->
+    <!--                    </div>-->
+    <!--                    <div class="mb-2">-->
+    <!--                        <label class="enquiry-model-field mt-2" for="phone_number" class="form-label"> Phone Number-->
+    <!--                            <span class="text-danger">*</span></label>-->
+    <!--                        <input type="text" class="form-control" id="phone_number" placeholder="Enter Phone Number"-->
+    <!--                            name="phone_number" required>-->
+    <!--                        @error('phone_number')
+        -->
+        <!--                            <div class="text-danger">{{ $message }}</div>-->
+        <!--
+    @enderror-->
+    <!--                    </div>-->
+    <!--                    <div class="mb-2">-->
+    <!--                        <label class="enquiry-model-field mt-2" for="message" class="form-label"> Message <span-->
+    <!--                                class="text-danger">*</span></label>-->
+    <!--                        <textarea type="text" class="form-control" id="message" placeholder="Enter Message" name="message"></textarea>-->
+    <!--                        @error('message')
+        -->
+        <!--                            <div class="text-danger">{{ $message }}</div>-->
+        <!--
+    @enderror-->
+    <!--                    </div>-->
+
+    <!--                    <button type="submit" class="btn btn-primary"-->
+    <!--                        style="background-color:rgb(26,79,156); border-radius:5px; border:none">Submit</button>-->
+    <!--                </form>-->
+    <!--            </div>-->
+    <!--        </div>-->
+    <!--    </div>-->
+    <!--</div>-->
+    <div id="carouselExampleCaptions" class="carousel slide animate-aos" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            @foreach ($banners as $key => $banner)
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="{{ $key }}"
+                    @if ($loop->first) class="active" @endif
+                    aria-label="Slide {{ $key + 1 }}"></button>
+            @endforeach
+        </div>
+        <div class="carousel-inner">
+            @foreach ($banners as $key => $banner)
+                <div class="carousel-item @if ($loop->first) active @endif">
+                    <img loading="eager" src="{{ Storage::url($banner->banner_image_path) }}" class="d-block w-100 hero-slide-img"
+                        alt="banner_image">
+                    <div class="carousel-caption d-none d-md-block">
+                        {{-- Your caption content here --}}
+                    </div>
+                </div>
+            @endforeach
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+    {{-- End of Hero Slider Section --}}
+
+    {{-- Admissions CTA Section --}}
+    <section class="admission-cta-section">
+
+        {{-- Decorative blobs --}}
+        <div class="adm-blob adm-blob-1"></div>
+        <div class="adm-blob adm-blob-2"></div>
+
+        <div class="container position-relative" style="z-index:1">
+            <div class="row align-items-center gy-5">
+
+                {{-- Left: text + buttons --}}
+                <div class="col-lg-7 text-white" data-aos="fade-right">
+                    <span class="adm-badge"><i class="fas fa-star me-1"></i> Admissions Open 2026–27</span>
+                    <h2 class="adm-title mt-3">Give Your Child the Education They Deserve</h2>
+                    <p class="adm-subtitle">Dass &amp; Brown Experiential Learning School is now accepting applications. Secure your child's future with world-class, future-ready learning.</p>
+
+                    <div class="d-flex flex-wrap gap-3 mt-4">
+                        <button class="adm-btn-primary npfWidgetButton npfWidget-cbdb663e4ed49cb2c31d9bd90e87b6c7">
+                            <i class="fas fa-question-circle me-2"></i>Enquire Now
+                        </button>
+                        <a href="https://admissions.dassandbrownschool.com/" target="_blank" rel="noopener noreferrer" class="adm-btn-outline">
+                            <i class="fas fa-pen me-2"></i>Register Now
+                        </a>
+                    </div>
+                </div>
+
+                {{-- Right: stats --}}
+                <div class="col-lg-5" data-aos="fade-left" data-aos-delay="150">
+                    <div class="adm-stats-grid">
+                        <div class="adm-stat">
+                            <span class="adm-stat-num">36<span class="adm-stat-plus">+</span></span>
+                            <span class="adm-stat-label">National Awards &amp; Prestigious Recognitions</span>
+                        </div>
+                        <div class="adm-stat">
+                            <i class="fas fa-graduation-cap adm-stat-icon"></i>
+                            <span class="adm-stat-label">CBSE &amp; Cambridge International Curricula</span>
+                        </div>
+                        <div class="adm-stat">
+                            <i class="fab fa-microsoft adm-stat-icon"></i>
+                            <span class="adm-stat-label">Proud Microsoft Showcase School</span>
+                        </div>
+                        <div class="adm-stat">
+                            <i class="fas fa-robot adm-stat-icon"></i>
+                            <span class="adm-stat-label">Advanced AI, Robotics &amp; STEAM Innovation Labs</span>
+                        </div>
+                        <div class="adm-stat">
+                            <span class="adm-stat-num">1000<span class="adm-stat-plus">+</span></span>
+                            <span class="adm-stat-label">Young Leaders Inspired &amp; Empowered</span>
+                        </div>
+                        <div class="adm-stat">
+                            <i class="fas fa-globe adm-stat-icon"></i>
+                            <span class="adm-stat-label">International Exposure &amp; Global Exchange Opportunities</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    {{-- Explore Your Potential --}}
+    <div class="container-fluid py-5 animate-aos">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 d-flex flex-column justify-content-center">
+                    <div class="row">
+                        <div class="col-3 col-sm-3 col-md-3 col-lg-3 d-flex justify-content-center align-items-center">
+                            <img loading="lazy" class="pb-md-4 pb-sm-4 pb-4 explore-logo"
+                                src="{{ asset('storage/assets/dbs.webp') }}" alt="dbels-logo">
+                        </div>
+                        <div class="col-9 col-sm-9 col-md-9 col-lg-9" data-aos="fade-up" data-aos-delay="400">
+                            <h2 class="explore-potential-heading mb-4">
+                                SHAPING FUTURE LEADERS THROUGH
+                                <span class="fw-bold explore-text">INNOVATION & TECHNOLOGY</span>
+                            </h2>
+                        </div>
+                    </div>
+                    <p class="explore-potential-text" data-aos="fade-up" data-aos-delay="500">
+                        Located in the serene environment of Panchkula, (Tri City) , <br> Dass & Brown Experiential Learning
+                        School is designed to cultivate competent & conscientious individuals who can think ahead of their
+                        times. Dbels is designed with modern architecture & is going to be the first of its kind, centrally
+                        air-conditioned, state-of-the-art, Wi-Fi enabled, digitally equipped campus.
+                    </p>
+                </div>
+                <div class="col-lg-6 h-100 shadow-sm p-1" data-aos="fade-left" data-aos-delay="600">
+                    <!--<iframe width="100%" style="aspect-ratio: 2.02;"-->
+                    <!--    src="https://www.youtube.com/embed/OfPGCY2k9y4?si=IEd3yUQt2zrNWZfJ" title="YouTube video player"-->
+                    <!--    frameborder="0"-->
+                    <!--    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"-->
+                    <!--    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>-->
+                    {{-- Second-Slider Section --}}
+                    <div id="explore" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-indicators">
+                            @foreach ($explorebanners as $key => $explorebanner)
+                                <button type="button" data-bs-target="#explore" data-bs-slide-to="{{ $key }}"
+                                    @if ($loop->first) class="active" @endif
+                                    aria-label="Slide {{ $key + 1 }}"></button>
+                            @endforeach
+                        </div>
+                        <div class="carousel-inner">
+                            @foreach ($explorebanners as $key => $explorebanner)
+                                <div class="carousel-item @if ($loop->first) active @endif">
+                                    <img loading="lazy" src="{{ Storage::url($explorebanner->banner_image_path) }}"
+                                        class="d-block w-100 explore-slide-img" alt="Slide {{ $key + 1 }}">
+                                    <div class="carousel-caption d-none d-md-block">
+                                        {{-- Your caption content here --}}
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#explore"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#explore"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{-- Card Highlights Section --}}
+    <div class="container-fluid highlights-section py-5" data-aos="fade-up">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col">
+                    <span class="hlt-eyebrow">Quick Access</span>
+                    <h2 class="section-title mt-2">Explore More with Dbels</h2>
+                    <p class="text-light opacity-75">Everything you need, just a click away</p>
+                </div>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <a href="https://admissions.dassandbrownschool.com/" class="hlt-card">
+                        <div class="hlt-card-top-bar"></div>
+                        <div class="hlt-card-body">
+                            <div class="hlt-card-icon-wrap">
+                                <img src="{{ asset('storage/assets/admissions.png') }}" alt="admissions" loading="lazy">
+                            </div>
+                            <h3 class="hlt-card-title">Admission Enquiry</h3>
+                            <p class="hlt-card-desc">Begin your child's journey. Apply now for the 2026–27 academic year.</p>
+                            <span class="hlt-card-cta">Enquire Now <i class="fas fa-arrow-right"></i></span>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <a href="{{ route('blogs.get') }}" class="hlt-card">
+                        <div class="hlt-card-top-bar"></div>
+                        <div class="hlt-card-body">
+                            <div class="hlt-card-icon-wrap">
+                                <img src="{{ asset('storage/assets/blog.png') }}" alt="blog" loading="lazy">
+                            </div>
+                            <h3 class="hlt-card-title">Blogs</h3>
+                            <p class="hlt-card-desc">Insights, stories and the latest news from the DBS community.</p>
+                            <span class="hlt-card-cta">Read Blogs <i class="fas fa-arrow-right"></i></span>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                    <a href="{{ route('job-form.get') }}" class="hlt-card">
+                        <div class="hlt-card-top-bar"></div>
+                        <div class="hlt-card-body">
+                            <div class="hlt-card-icon-wrap">
+                                <img src="{{ asset('storage/assets/career-path.png') }}" alt="career" loading="lazy">
+                            </div>
+                            <h3 class="hlt-card-title">Careers</h3>
+                            <p class="hlt-card-desc">Join our team of passionate educators, innovators and changemakers.</p>
+                            <span class="hlt-card-cta">View Openings <i class="fas fa-arrow-right"></i></span>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="400">
+                    <a href="{{ route('contact') }}" class="hlt-card">
+                        <div class="hlt-card-top-bar"></div>
+                        <div class="hlt-card-body">
+                            <div class="hlt-card-icon-wrap">
+                                <img src="{{ asset('storage/assets/phone.png') }}" alt="contact" loading="lazy">
+                            </div>
+                            <h3 class="hlt-card-title">Contact Us</h3>
+                            <p class="hlt-card-desc">Have a question? We're here to help and guide you every step of the way.</p>
+                            <span class="hlt-card-cta">Get in Touch <i class="fas fa-arrow-right"></i></span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- What Sets Us Apart Section -->
+    <section class="what-sets-us-apart py-5 bg-light" data-aos="fade-up">
+        <div class="container">
+
+            <!-- Section Header -->
+            <div class="text-center mb-5">
+                <h2 class="fw-bold" data-aos="zoom-in">What Sets Us Apart</h2>
+                <p class="text-muted mt-2" data-aos="fade-up" data-aos-delay="150">
+                    A Future-Ready Learning Ecosystem Built on Excellence, Innovation & Global Exposure
+                </p>
+            </div>
+
+            <!-- MAIN ROW -->
+            <div class="row g-4">
+
+                <!-- LEFT SIDE -->
+                <div class="col-12 col-lg-4 d-flex">
+                    <div class="d-flex flex-column justify-content-between gap-3 h-100 w-100">
+
+                        <div class="d-flex" data-aos="fade-right">
+                            <i class="fas fa-book-open text-danger fs-4 me-3"></i>
+                            <p class="mb-0 text-muted">Dual Curriculum Advantage – CBSE & Cambridge (CAIE)</p>
+                        </div>
+
+                        <div class="d-flex" data-aos="fade-right" data-aos-delay="100">
+                            <i class="fas fa-school text-danger fs-4 me-3"></i>
+                            <p class="mb-0 text-muted">World-Class Smart Campus with Advanced Infrastructure</p>
+                        </div>
+
+                        <div class="d-flex" data-aos="fade-right" data-aos-delay="200">
+                            <i class="fas fa-laptop-code text-danger fs-4 me-3"></i>
+                            <p class="mb-0 text-muted">Microsoft Showcase School with AI-Driven Learning</p>
+                        </div>
+
+                        <div class="d-flex" data-aos="fade-right" data-aos-delay="300">
+                            <i class="fas fa-flask text-danger fs-4 me-3"></i>
+                            <p class="mb-0 text-muted">Experiential, Research-Based & Flipped Learning Pedagogies</p>
+                        </div>
+
+                        <div class="d-flex" data-aos="fade-right" data-aos-delay="400">
+                            <i class="fas fa-robot text-danger fs-4 me-3"></i>
+                            <p class="mb-0 text-muted">Highly Awarded ATL, Robotics & STEAM Programs</p>
+                        </div>
+
+                        <div class="d-flex" data-aos="fade-right" data-aos-delay="500">
+                            <i class="fas fa-user-tie text-danger fs-4 me-3"></i>
+                            <p class="mb-0 text-muted">Strong Focus on Communication, Leadership & Personality Development</p>
+                        </div>
+
+                        <div class="d-flex" data-aos="fade-right" data-aos-delay="600">
+                            <i class="fas fa-trophy text-danger fs-4 me-3"></i>
+                            <p class="mb-0 text-muted">Outstanding Academic Excellence & Competitive Exam Preparation</p>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- CENTER IMAGE -->
+                <div class="col-12 col-lg-4 d-flex justify-content-center">
+                    <img src="{{ asset('storage/assets/teddy_1.webp') }}" alt="Student Learning"
+                        class="img-fluid sets-apart-img" data-aos="zoom-in">
+                </div>
+
+                <!-- RIGHT SIDE -->
+                <div class="col-12 col-lg-4 d-flex">
+                    <div class="d-flex flex-column justify-content-between gap-3 h-100 w-100">
+
+                        <div class="d-flex" data-aos="fade-left">
+                            <i class="fas fa-rocket text-danger fs-4 me-3"></i>
+                            <p class="mb-0 text-muted">International Exposure through NASA, MIT, Harvard & Global Programs</p>
+                        </div>
+
+                        <div class="d-flex" data-aos="fade-left" data-aos-delay="100">
+                            <i class="fas fa-swimming-pool text-danger fs-4 me-3"></i>
+                            <p class="mb-0 text-muted">Elite Sports Facilities including Habitat Centre & Swimming Pool</p>
+                        </div>
+
+                        <div class="d-flex" data-aos="fade-left" data-aos-delay="200">
+                            <i class="fas fa-palette text-danger fs-4 me-3"></i>
+                            <p class="mb-0 text-muted">Holistic Development through Arts, Culture & Innovation</p>
+                        </div>
+
+                        <div class="d-flex" data-aos="fade-left" data-aos-delay="300">
+                            <i class="fas fa-heart text-danger fs-4 me-3"></i>
+                            <p class="mb-0 text-muted">Certified Wellness Support with Counsellors & Mentors</p>
+                        </div>
+
+                        <div class="d-flex" data-aos="fade-left" data-aos-delay="400">
+                            <i class="fas fa-compass text-danger fs-4 me-3"></i>
+                            <p class="mb-0 text-muted">Career Guidance & Study Abroad Support from Middle School</p>
+                        </div>
+
+                        <div class="d-flex" data-aos="fade-left" data-aos-delay="500">
+                            <i class="fas fa-shield-alt text-danger fs-4 me-3"></i>
+                            <p class="mb-0 text-muted">Safe, Secure & Student-Centric Environment with 24×7 CCTV</p>
+                        </div>
+
+                        <div class="d-flex" data-aos="fade-left" data-aos-delay="600">
+                            <i class="fas fa-award text-danger fs-4 me-3"></i>
+                            <p class="mb-0 text-muted">Nationally Recognized with Multiple Awards & Rankings</p>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </section>
+
+
+
+    <section class="py-5 position-relative text-dark section-activity-bg">
+        <div class="container">
+            <!-- TITLE -->
+            <div class="text-center mb-5" data-aos="fade-down">
+                <h2 class="fw-bold display-4 p-2 activity-heading">Real Learning in Action</h2>
+                <p class="text-muted fs-5">A glimpse of engaging moments inside and outside the classroom at
+                    <strong>DBS</strong>
+                </p>
+            </div>
+
+            <!-- IMAGE GRID -->
+            <div class="row g-4">
+                @foreach (range(1, 6) as $i)
+                    <div class="col-sm-6 col-md-4" data-aos="zoom-in" data-aos-delay="{{ 100 * $i }}">
+                        <div class="position-relative overflow-hidden rounded-4 shadow-sm activity-img-wrap">
+                            @php
+                                $imagePath = 'storage/assets/image' . $i . '.jpeg';
+                            @endphp
+
+                            @if (file_exists(public_path($imagePath)))
+                                <img src="{{ asset($imagePath) }}" class="w-100 h-100 reel-cover"
+                                    alt="Activity Photo {{ $i }}">
+                            @else
+                                <div
+                                    class="w-100 h-100 d-flex align-items-center justify-content-center text-muted bg-light">
+                                    <small>Image {{ $i }} not found</small>
+                                </div>
+                            @endif
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+
+            <!-- VIEW GALLERY -->
+            <div class="text-center mt-5" data-aos="fade-up">
+                <a href="{{ route('gallery-activities.get') }}"
+                    class="btn btn-outline-primary px-4 py-2 rounded-pill shadow-sm">View Full Gallery</a>
+            </div>
+        </div>
+    </section>
+
+
+    {{-- Facilities Section --}}
+    <section class="fac-section py-5" data-aos="fade-up">
+        <div class="container">
+
+            {{-- Section header --}}
+            <div class="text-center mb-5">
+                <span class="hlt-eyebrow" data-aos="fade-down">World-Class Infrastructure</span>
+                <h2 class="cool-heading mt-2" data-aos="zoom-in">Facilities @ DBS</h2>
+                <p class="fac-section-desc text-muted mt-3 mx-auto" data-aos="fade-up" data-aos-delay="100">
+                    A masterpiece of modern design — centrally air-conditioned, Wi-Fi enabled and fully digitally
+                    equipped with cutting-edge science, innovation labs and elite sports facilities.
+                </p>
+            </div>
+
+            {{-- Facility tiles --}}
+            @php
+                $facilities = [
+                    ['src' => 'AI INNOVATION hub.png',               'alt' => 'AI Innovation Hub'],
+                    ['src' => 'ATL & ROBOTICS Labs.png',             'alt' => 'ATL & Robotics Labs'],
+                    ['src' => 'Advance Laboratories.png',            'alt' => 'Advance Laboratories'],
+                    ['src' => 'Smart Classrooms.png',                'alt' => 'Smart Classrooms'],
+                    ['src' => 'SMART DIGITAL Board.png',             'alt' => 'Smart Digital Board'],
+                    ['src' => 'HI-TECH Campus.png',                  'alt' => 'Hi-Tech Campus'],
+                    ['src' => 'HABITAT centre.png',                  'alt' => 'Habitat Centre'],
+                    ['src' => 'SWIMMING pool.png',                   'alt' => 'Swimming Pool'],
+                    ['src' => 'MILKHA SINGH stadium.png',            'alt' => 'Milkha Singh Stadium'],
+                    ['src' => 'ASTROTURF courts.png',                'alt' => 'Astroturf Courts'],
+                    ['src' => 'INDOOR SPORTS arena.png',             'alt' => 'Indoor Sports Arena'],
+                    ['src' => 'RIFLE SHOOTING range.png',            'alt' => 'Rifle Shooting Range'],
+                    ['src' => 'OPEN AIR theatre.png',                'alt' => 'Open Air Theatre'],
+                    ['src' => 'WELLNESS &  counselling session.png', 'alt' => 'Wellness & Counselling'],
+                    ['src' => '24×7 CCTV security.png',              'alt' => '24×7 CCTV Security'],
+                ];
+            @endphp
+            <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 g-4 justify-content-center">
+                @foreach ($facilities as $index => $facility)
+                    <div class="col" data-aos="zoom-in" data-aos-delay="{{ 60 + $index * 50 }}">
+                        <div class="fac-tile">
+                            <div class="fac-tile-img-wrap">
+                                <img loading="lazy"
+                                    src="{{ asset('storage/assets/facilities-images/' . rawurlencode($facility['src'])) }}"
+                                    alt="{{ $facility['alt'] }}">
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+
+        </div>
+    </section>
+
+    {{-- Blog Section --}}
+    <div class="blog-section-wrap py-5">
+        <div class="container">
+
+            {{-- Section header --}}
+            <div class="blog-section-header" data-aos="fade-up">
+                <div>
+                    <span class="blog-section-label">Stay Informed</span>
+                    <h2 class="blog-section-title">Latest from Our Blog</h2>
+                </div>
+                <a href="{{ route('blogs.get') }}" class="blog-view-all">View All <i class="fas fa-arrow-right ms-1"></i></a>
+            </div>
+
+            {{-- Cards --}}
+            <div class="row g-4 mt-1">
+                @foreach ($blogs as $blog)
+                    <div class="col-lg-3 col-md-6 col-12" data-aos="fade-up" data-aos-delay="{{ $loop->index * 80 }}">
+                        <a href="{{ route('blog.detail.get', ['slug' => $blog->slug]) }}" class="blog-card-link">
+                            <div class="blog-card-v2">
+                                {{-- Image with overlay --}}
+                                <div class="blog-card-v2-img-wrap">
+                                    <img src="{{ Storage::url($blog->blog_image_path) }}" loading="lazy"
+                                        class="blog-card-v2-img" alt="{{ $blog->title }}">
+                                    <div class="blog-card-v2-img-overlay"></div>
+                                </div>
+                                {{-- Body --}}
+                                <div class="blog-card-v2-body">
+                                    <div class="blog-card-v2-date">
+                                        <i class="far fa-calendar-alt me-1"></i>{{ $blog->created_at->format('M j, Y') }}
+                                    </div>
+                                    <h5 class="blog-card-v2-title">{{ Str::limit($blog->title, 65) }}</h5>
+                                    <span class="blog-card-v2-cta">Read More <i class="fas fa-arrow-right"></i></span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                @endforeach
+            </div>
+
+        </div>
+    </div>
+
+
+    <x-brochure-modal />
+
+    <x-thank-you-modal id="brochureThankYouModal" title="🎉 Thank You!" message="Your brochure request is received!"
+        download="{{ asset('brochures/dbels-brochure.pdf') }}" filename="dbels-brochure.pdf" />
+
+
+
+
+@endsection
