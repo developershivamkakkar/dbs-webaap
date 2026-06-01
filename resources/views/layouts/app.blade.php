@@ -187,6 +187,50 @@
         });
     </script>
 
+    {{-- ── Sidebar "Register Now" CTA ─────────────────────────────────── --}}
+    @php
+        $sidebarEnabled = \App\Models\SiteSetting::get('sidebar_register_enabled', '0');
+        $sidebarText    = \App\Models\SiteSetting::get('sidebar_register_text', 'Register Now');
+        $sidebarUrl     = \App\Models\SiteSetting::get('sidebar_register_url', '#');
+    @endphp
+    @if($sidebarEnabled === '1' && $sidebarUrl)
+    <a href="{{ $sidebarUrl }}" target="_blank" rel="noopener" class="sidebar-register-btn" aria-label="{{ $sidebarText }}">
+        <span>{{ $sidebarText }}</span>
+    </a>
+    <style>
+        .sidebar-register-btn {
+            position: fixed;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%) rotate(90deg) translateX(50%);
+            transform-origin: right center;
+            background: var(--color-primary, #8c0305);
+            color: #fff !important;
+            text-decoration: none !important;
+            font-family: 'Poppins', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            padding: 10px 22px;
+            border-radius: 6px 6px 0 0;
+            z-index: 1050;
+            white-space: nowrap;
+            box-shadow: -2px 0 10px rgba(0,0,0,.18);
+            transition: background .2s, padding .2s;
+        }
+        .sidebar-register-btn:hover {
+            background: #a80408;
+            padding: 12px 22px;
+        }
+        @media (max-width: 575.98px) {
+            .sidebar-register-btn {
+                font-size: 11px;
+                padding: 8px 16px;
+            }
+        }
+    </style>
+    @endif
+
     {{-- Per-page scripts --}}
     @yield('scripts')
     @stack('scripts')

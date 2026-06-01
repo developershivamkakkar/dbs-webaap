@@ -1,5 +1,12 @@
 /* Google Fonts loaded via <link> in layout for better performance */
 
+/* ── Universal reset ──────────────────────────────────────────────── */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 /* ── Page Loader ───────────────────────────────────────────────────── */
 #page-loader {
     position: fixed;
@@ -81,6 +88,11 @@
     --third-color:          var(--brand-maroon);
     --fourth-color:         #dad6d6;
     --primary-color:        var(--brand-maroon);
+}
+
+/* Prevent layout shift when Bootstrap modal opens/closes (scrollbar gutter) */
+html {
+    scrollbar-gutter: stable;
 }
 
 html, body {
@@ -1172,42 +1184,6 @@ main.hero-page { padding-top: 0; }
     color: var(--color-primary);
 }
 
-/* Mobile gallery section in sidebar */
-.mob-gallery-section {
-    border-top: 1px solid var(--color-border-light);
-    padding: 4px 0 4px;
-}
-.mob-gallery-heading {
-    font-size: 11px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.8px;
-    color: var(--color-primary);
-    padding: 8px 18px 4px;
-    margin-bottom: 0;
-}
-.mob-gallery-section .mob-subnav-list li a {
-    display: flex;
-    align-items: center;
-    padding: 0 18px;
-    height: 48px;
-    font-family: 'Poppins', sans-serif;
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--color-text-dark);
-    text-decoration: none;
-    border-left: 3px solid transparent;
-    transition: background .15s, color .15s, padding-left .15s;
-}
-.mob-gallery-section .mob-subnav-list li {
-    border-bottom: 1px solid var(--color-border-light);
-}
-.mob-gallery-section .mob-subnav-list li a:hover {
-    background: var(--color-primary-light);
-    border-left-color: var(--color-primary);
-    color: var(--color-primary);
-    padding-left: 22px;
-}
 .desktop-lower-nav-strip {
     background: var(--color-primary);
     box-shadow: 0 2px 8px rgba(0,0,0,.18);
@@ -1751,20 +1727,14 @@ main.hero-page { padding-top: 0; }
 .mob-sidebar-contact-strip a i { font-size: 11px; }
 
 /* ── Nav list ────────────────────────────────────────────────────── */
+/* ── Nav list (main panel) ───────────────────────────────────────── */
 .mob-nav-list {
     list-style: none;
     margin: 0; padding: 0;
-    overflow-y: auto;
-    flex: 1;
 }
-
-/* Hide submenu toggles */
-.mob-sub-toggle { display: none; }
-
-/* Nav item */
 .mob-nav-item { border-bottom: 1px solid var(--color-border-light); }
 
-/* Base link */
+/* Base link / button row */
 .mob-nav-link {
     display: flex;
     align-items: center;
@@ -1781,12 +1751,17 @@ main.hero-page { padding-top: 0; }
     border-left: 3px solid transparent;
     width: 100%;
     box-sizing: border-box;
+    background: none;
+    border-top: none; border-right: none; border-bottom: none;
+    text-align: left;
 }
-.mob-nav-link:hover {
+.mob-nav-link:hover,
+.mob-nav-link:focus {
     background: var(--color-primary-light);
     border-left-color: var(--color-primary);
     color: var(--color-primary);
     padding-left: 22px;
+    outline: none;
 }
 .mob-nav-icon {
     width: 18px;
@@ -1796,67 +1771,49 @@ main.hero-page { padding-top: 0; }
     margin-right: 10px;
     flex-shrink: 0;
 }
-
-/* Chevron on parent items */
 .mob-sub-chevron {
     font-size: 10px;
     color: var(--color-text-muted);
     flex-shrink: 0;
+    transition: transform .2s;
 }
 
-/* ── Panels wrapper ───────────────────────────────────────────────── */
-.mob-panels-wrapper {
+/* ── JS-driven push-nav panels container ─────────────────────────── */
+.mob-nav-panels-container {
     position: relative;
     flex: 1;
     overflow: hidden;
 }
 
-/* Both panels share the same slot */
-.mob-panel {
+/* Every panel is absolutely stacked, off-screen right by default */
+.mob-nav-panel {
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
-    overflow-y: auto;
-    overflow-x: hidden;
-    transition: transform .32s cubic-bezier(.25,.8,.25,1);
-    background: #fff;
     display: flex;
     flex-direction: column;
+    background: #fff;
+    transform: translateX(100%);
+    transition: transform .3s cubic-bezier(.4,0,.2,1);
+    will-change: transform;
+}
+/* Active (visible) panel */
+.mob-nav-panel[data-active] {
+    transform: translateX(0);
+}
+/* Previous panel slides left when child is active */
+.mob-nav-panel[data-prev] {
+    transform: translateX(-30%);
 }
 
-/* Main panel: visible by default */
-.mob-main-panel { transform: translateX(0); }
+/* Scrollable inner wrapper */
+.mob-nav-scroll {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+}
 
-/* Sub panels: off-screen to the right by default */
-.mob-sub-panel  { transform: translateX(100%); }
-
-/* When a sub toggle is checked — main slides left, matching sub slides in */
-#msub-1:checked  ~ .mob-main-panel,
-#msub-2:checked  ~ .mob-main-panel,
-#msub-3:checked  ~ .mob-main-panel,
-#msub-4:checked  ~ .mob-main-panel,
-#msub-5:checked  ~ .mob-main-panel,
-#msub-6:checked  ~ .mob-main-panel,
-#msub-7:checked  ~ .mob-main-panel,
-#msub-8:checked  ~ .mob-main-panel,
-#msub-9:checked  ~ .mob-main-panel,
-#msub-10:checked ~ .mob-main-panel,
-#msub-11:checked ~ .mob-main-panel,
-#msub-12:checked ~ .mob-main-panel { transform: translateX(-30%); }
-
-#msub-1:checked  ~ #mob-sp-1  { transform: translateX(0); }
-#msub-2:checked  ~ #mob-sp-2  { transform: translateX(0); }
-#msub-3:checked  ~ #mob-sp-3  { transform: translateX(0); }
-#msub-4:checked  ~ #mob-sp-4  { transform: translateX(0); }
-#msub-5:checked  ~ #mob-sp-5  { transform: translateX(0); }
-#msub-6:checked  ~ #mob-sp-6  { transform: translateX(0); }
-#msub-7:checked  ~ #mob-sp-7  { transform: translateX(0); }
-#msub-8:checked  ~ #mob-sp-8  { transform: translateX(0); }
-#msub-9:checked  ~ #mob-sp-9  { transform: translateX(0); }
-#msub-10:checked ~ #mob-sp-10 { transform: translateX(0); }
-#msub-11:checked ~ #mob-sp-11 { transform: translateX(0); }
-#msub-12:checked ~ #mob-sp-12 { transform: translateX(0); }
-
-/* ── Subpanel header (Back button row) ───────────────────────────── */
+/* ── Sub-panel header (title + back button) ──────────────────────── */
 .mob-subpanel-head {
     display: flex;
     align-items: center;
@@ -1875,34 +1832,41 @@ main.hero-page { padding-top: 0; }
     font-size: 13px;
     font-weight: 600;
     cursor: pointer;
-    padding: 8px 10px 8px 0;
+    padding: 8px 12px 8px 0;
     border-right: 1px solid rgba(255,255,255,.3);
     margin-right: 4px;
     white-space: nowrap;
     transition: color .2s;
+    background: none;
+    border-top: none; border-left: none; border-bottom: none;
 }
-.mob-back-btn:hover { color: #fff; }
+.mob-back-btn:hover,
+.mob-back-btn:focus { color: #fff; outline: none; }
 .mob-subpanel-title {
     font-family: 'Poppins', sans-serif;
     font-size: 14px;
     font-weight: 700;
     color: #fff;
     letter-spacing: .3px;
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 /* ── Subnav list (inside sub panels) ─────────────────────────────── */
 .mob-subnav-list {
     list-style: none;
     margin: 0; padding: 0;
-    flex: 1;
 }
 .mob-subnav-list li {
     border-bottom: 1px solid var(--color-border-light);
 }
+/* Plain link items */
 .mob-subnav-list li a {
     display: flex;
     align-items: center;
-    padding: 14px 20px 14px 24px;
+    padding: 14px 18px 14px 22px;
     font-family: 'Poppins', sans-serif;
     font-size: 14px;
     color: var(--color-text-body);
@@ -1922,79 +1886,44 @@ main.hero-page { padding-top: 0; }
 .mob-subnav-list li a:hover {
     background: var(--color-primary-light);
     color: var(--color-primary);
-    padding-left: 28px;
+    padding-left: 26px;
     border-left-color: var(--color-primary);
 }
-
-/* ── Level-3 accordion inside mobile sub-panels ──────────────────── */
-/* The expandable parent row */
-.mob-subnav-list .dropdown-submenu-toggle {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: space-between !important;
-    width: 100%;
-    padding: 14px 20px 14px 24px !important;
-    font-family: 'Poppins', sans-serif !important;
-    font-size: 14px !important;
-    font-weight: 600 !important;
-    color: var(--color-primary) !important;
-    background: var(--color-primary-light) !important;
-    border-left: 3px solid var(--color-primary) !important;
-    text-decoration: none;
-    cursor: pointer;
-    border-bottom: 1px solid var(--color-border-light);
-}
-.mob-subnav-list .dropdown-submenu-toggle .fa-chevron-right {
-    font-size: 10px;
-    transition: transform .2s ease;
-}
-.mob-subnav-list .dropdown-submenu.open > .dropdown-submenu-toggle .fa-chevron-right {
-    transform: rotate(90deg);
-}
-
-/* The deep grandchildren list */
-.mob-subnav-list .mob-subnav-deep {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    background: var(--color-primary-light);
-    border-left: 3px solid var(--color-primary);
-    margin-left: 16px;
-    border-radius: 0;
-    display: none;
-}
-.mob-subnav-list .dropdown-submenu.open > .mob-subnav-deep {
-    display: block;
-}
-.mob-subnav-list .mob-subnav-deep li {
-    border-bottom: 1px solid var(--color-border-light);
-}
-.mob-subnav-list .mob-subnav-deep li a {
+/* Button items that push a deeper panel */
+.mob-subnav-link {
     display: flex;
     align-items: center;
-    padding: 12px 18px 12px 20px;
+    justify-content: space-between;
+    padding: 14px 18px 14px 22px;
     font-family: 'Poppins', sans-serif;
-    font-size: 13px;
-    color: var(--color-text-body);
-    text-decoration: none;
-    border-left: 3px solid transparent;
-    transition: background .15s, color .15s, padding-left .15s, border-color .15s;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-primary);
+    background: var(--color-primary-light);
+    border-left: 3px solid var(--color-primary);
+    width: 100%;
+    box-sizing: border-box;
+    cursor: pointer;
+    text-align: left;
+    border-top: none; border-right: none; border-bottom: none;
+    transition: background .15s, padding-left .15s;
 }
-.mob-subnav-list .mob-subnav-deep li a::before {
-    content: '\f105';
+.mob-subnav-link::before {
+    content: '\f054';
     font-family: 'Font Awesome 5 Free';
     font-weight: 900;
     font-size: 9px;
     color: var(--color-primary);
-    margin-right: 8px;
+    margin-right: 10px;
     flex-shrink: 0;
 }
-.mob-subnav-list .mob-subnav-deep li a:hover {
-    background: rgba(227,30,37,.12);
-    color: var(--color-primary);
-    padding-left: 24px;
-    border-left-color: var(--color-primary);
+.mob-subnav-link:hover,
+.mob-subnav-link:focus {
+    background: rgba(140,3,5,.12);
+    padding-left: 26px;
+    outline: none;
 }
+.mob-subnav-link .mob-sub-chevron { margin-left: auto; }
 
 /* ── CTA buttons ─────────────────────────────────────────────────── */
 .mob-sidebar-cta {
@@ -2085,32 +2014,43 @@ main.hero-page { padding-top: 0; }
 /* Floating strip styles */
 .floating-strip-right {
     position: fixed;
-    top: 40%; /* Center vertically */
-    right: 0; /* Align to the right side */
+    top: 40%;
+    right: 0;
     text-align: center;
-    transform: translateY(-50%); /* Adjust vertical centering */
-    background: var(--third-color);
-    padding: 8px 0px;
-    width: 35px; /* Width of the strip */
-    height: 130px; /* Height of the strip */
-    border-radius: 10px 0 0 10px; /* Round left corners */
-    z-index: 1050; /* Keep it above other elements */
-    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2); /* Shadow for depth */
-    writing-mode: vertical-rl; /* Make the text flow vertically */
-    transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
+    transform: translateY(-50%);
+    background: linear-gradient(to bottom, #b80406 0%, #6b0203 100%);
+    padding: 14px 0;
+    width: 40px;
+    height: 145px;
+    border-radius: 12px 0 0 12px;
+    border-top: 3px solid var(--brand-golden);
+    z-index: 1050;
+    box-shadow: -3px 0 14px rgba(140, 3, 5, 0.55), inset 1px 0 0 rgba(255, 255, 255, 0.08);
+    writing-mode: vertical-rl;
+    transition: transform 0.3s cubic-bezier(.25, .8, .25, 1), box-shadow 0.3s ease, background 0.3s ease, width 0.3s ease;
+    animation: stripRegisterPulse 3.5s ease-in-out infinite;
+}
+
+@keyframes stripRegisterPulse {
+    0%, 100% { box-shadow: -3px 0 14px rgba(140, 3, 5, 0.55), inset 1px 0 0 rgba(255, 255, 255, 0.08); }
+    50%       { box-shadow: -4px 0 22px rgba(210, 174, 109, 0.65), -2px 0 8px rgba(140, 3, 5, 0.35), inset 1px 0 0 rgba(255, 255, 255, 0.08); }
 }
 
 .floating-strip-right:hover {
-    transform: translateY(-50%) scale(1.05); /* Slightly scale up the strip */
-    box-shadow: -4px 0 10px rgba(0, 0, 0, 0.4); /* Darker and bigger shadow */
-    background-color: var(--secondary-color);
+    transform: translateY(-50%) translateX(-5px);
+    box-shadow: -6px 0 20px rgba(140, 3, 5, 0.65), -2px 0 8px rgba(0, 0, 0, 0.35);
+    background: linear-gradient(to bottom, #d2ae6d 0%, #b8924a 100%);
+    width: 44px;
+    animation: none;
 }
 
 .floating-strip-right a {
     color: white;
     text-decoration: none;
-    font-size: 15px;
+    font-size: 14px;
+    font-weight: 600;
     font-family: var(--font-heading);
+    letter-spacing: 0.1em;
 }
 .floating-strip-right a:hover {
     color: white;
@@ -2153,31 +2093,35 @@ main.hero-page { padding-top: 0; }
 .floating-strip-right-bottom {
     position: fixed;
     top: 70%;
-    right: 0; /* Align to the right side */
+    right: 0;
     text-align: center;
-    transform: translateY(-50%); /* Adjust vertical centering */
-    background: var(--third-color);
-    padding: 8px 0px;
-    width: 35px; /* Width of the strip */
-    height: 200px; /* Height of the strip */
-    border-radius: 10px 0 0 10px; /* Round left corners */
-    z-index: 1000; /* Keep it above other elements */
-    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2); /* Shadow for depth */
-    writing-mode: vertical-rl; /* Make the text flow vertically */
-    transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
+    transform: translateY(-50%);
+    background: linear-gradient(to bottom, #b80406 0%, #6b0203 100%);
+    padding: 14px 0;
+    width: 40px;
+    height: 190px;
+    border-radius: 12px 0 0 12px;
+    border-top: 3px solid var(--brand-golden);
+    z-index: 1000;
+    box-shadow: -3px 0 14px rgba(140, 3, 5, 0.45), inset 1px 0 0 rgba(255, 255, 255, 0.08);
+    writing-mode: vertical-rl;
+    transition: transform 0.3s cubic-bezier(.25, .8, .25, 1), box-shadow 0.3s ease, background 0.3s ease, width 0.3s ease;
 }
 
 .floating-strip-right-bottom:hover {
-    transform: translateY(-50%) scale(1.05); /* Slightly scale up the strip */
-    box-shadow: -4px 0 10px rgba(0, 0, 0, 0.4); /* Darker and bigger shadow */
-    background: var(--secondary-color);
+    transform: translateY(-50%) translateX(-5px);
+    box-shadow: -6px 0 20px rgba(140, 3, 5, 0.65), -2px 0 8px rgba(0, 0, 0, 0.35);
+    background: linear-gradient(to bottom, #d2ae6d 0%, #b8924a 100%);
+    width: 44px;
 }
 
 .floating-strip-right-bottom a {
     color: white;
     text-decoration: none;
-    font-size: 15px;
+    font-size: 14px;
+    font-weight: 600;
     font-family: var(--font-heading);
+    letter-spacing: 0.1em;
 }
 .floating-strip-right-bottom a:hover {
     color: white;

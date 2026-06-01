@@ -1,8 +1,8 @@
 {{-- Announcements Section --}}
-<div class="container-fluid">
-    <div class="row">
+<div class="container-fluid px-0">
+    <div class="row g-0">
         <div
-            class="col-lg-3 col-md-12 d-flex justify-content-center align-items-center text-center mb-1 mb-lg-0 ann-bar-col">
+            class="col-lg-3 col-md-12 d-flex justify-content-center align-items-center text-center ann-bar-col">
             <div class="announcements"><i class="fas fa-bullhorn me-2"></i>ANNOUNCEMENTS:</div>
         </div>
         <div class="col-lg-7 col-md-12 d-flex align-items-center ann-bar-col">
@@ -88,6 +88,9 @@
 
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('show.page', ['slug' => 'faq']) }}">FAQs</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('testimonials.get') }}">Opinion That Matters</a>
             </li>
             <li class="nav-item ms-2">
                 <a class="nav-link header-apply-btn" href="{{ route('admissions.landing.get') }}">Apply Now</a>
@@ -198,122 +201,155 @@
         <a href="mailto:{{ config('site.email_info') }}"><i class="fas fa-envelope"></i> Email Us</a>
     </div>
 
-    {{-- ── Sliding panels area ─────────────────────────────────── --}}
-    <div class="mob-panels-wrapper">
+    {{-- ── JS-driven push-navigation panels ──────────────────────── --}}
+    <div class="mob-nav-panels-container">
 
-        {{-- Sub-panel toggles — MUST come before panels so CSS ~ works --}}
-        @php $subIdx = 0; @endphp
-        @foreach ($navMenuItems as $item)
-            @if ($item->children->isNotEmpty())
-                @php $subIdx++; @endphp
-                <input type="checkbox" id="msub-{{ $subIdx }}" class="mob-sub-toggle">
-            @endif
-        @endforeach
-
-        {{-- ── MAIN panel ──────────────────────────────────────── --}}
-        <div class="mob-panel mob-main-panel">
-            <ul class="mob-nav-list">
-                @php $subIdx = 0; @endphp
-                @foreach ($navMenuItems as $item)
+        {{-- ── MAIN PANEL ──────────────────────────────────────────── --}}
+        <div class="mob-nav-panel" data-panel="mob-main" data-active>
+            <div class="mob-nav-scroll">
+                <ul class="mob-nav-list">
+                    @foreach ($navMenuItems as $item)
+                        <li class="mob-nav-item">
+                            @if ($item->children->isNotEmpty())
+                                <button class="mob-nav-link" data-push="mob-sp-{{ $item->id }}">
+                                    <span>{{ $item->name }}</span>
+                                    <i class="fas fa-chevron-right mob-sub-chevron"></i>
+                                </button>
+                            @else
+                                <a href="{{ $item->href }}" class="mob-nav-link">
+                                    <span>{{ $item->name }}</span>
+                                </a>
+                            @endif
+                        </li>
+                    @endforeach
+                    {{-- Gallery → own panel --}}
                     <li class="mob-nav-item">
-                        @if ($item->children->isNotEmpty())
-                            @php $subIdx++; @endphp
-                            <label class="mob-nav-link mob-sub-label" for="msub-{{ $subIdx }}">
-                                <span>{{ $item->name }}</span>
-                                <i class="fas fa-chevron-right mob-sub-chevron"></i>
-                            </label>
-                        @else
-                            <a href="{{ $item->href }}" class="mob-nav-link">
-                                <span>{{ $item->name }}</span>
-                            </a>
-                        @endif
+                        <button class="mob-nav-link" data-push="mob-sp-gallery">
+                            <span><i class="fas fa-images mob-nav-icon"></i>Gallery</span>
+                            <i class="fas fa-chevron-right mob-sub-chevron"></i>
+                        </button>
                     </li>
-                @endforeach
-            </ul>
-
-            {{-- Gallery links --}}
-            <div class="mob-gallery-section">
-                <div class="mob-gallery-heading"><i class="fas fa-images me-2"></i>Gallery</div>
-                <ul class="mob-subnav-list">
-                    <li><a href="{{ route('gallery-infrastructure.get') }}"><i
-                                class="fas fa-building me-2"></i>Infrastructure</a></li>
-                    <li><a href="{{ route('gallery-school-events.get') }}"><i
-                                class="fas fa-calendar-alt me-2"></i>Events &amp; Activities</a></li>
-                    <li><a href="{{ route('gallery-annual-functions.get') }}"><i class="fas fa-star me-2"></i>Annual
-                            Functions</a></li>
-                    <li><a href="{{ route('gallery-news-clippings.get') }}"><i class="fas fa-newspaper me-2"></i>News
-                            Clippings</a></li>
+                    {{-- Quick Links → own panel --}}
+                    <li class="mob-nav-item">
+                        <button class="mob-nav-link" data-push="mob-sp-quicklinks">
+                            <span><i class="fas fa-link mob-nav-icon"></i>Quick Links</span>
+                            <i class="fas fa-chevron-right mob-sub-chevron"></i>
+                        </button>
+                    </li>
                 </ul>
-            </div>
 
-            {{-- CTA --}}
-            <div class="mob-sidebar-cta">
-                <a href="{{ route('admissions.landing.get') }}" class="mob-cta-apply">Apply Now</a>
-                <a href="{{ config('site.brochure_url') }}" class="mob-cta-brochure" target="_blank">Brochure</a>
-            </div>
+                {{-- CTA --}}
+                <div class="mob-sidebar-cta">
+                    <a href="{{ route('admissions.landing.get') }}" class="mob-cta-apply">Apply Now</a>
+                    <a href="{{ config('site.brochure_url') }}" class="mob-cta-brochure" target="_blank">Brochure</a>
+                </div>
 
-            {{-- Social --}}
-            <div class="mob-sidebar-social">
-                <span class="mob-social-label">Follow Us</span>
-                <div class="mob-social-icons">
-                    @if (config('site.social.facebook'))
-                        <a href="{{ config('site.social.facebook') }}" target="_blank" aria-label="Facebook"><i
-                                class="fab fa-facebook-f"></i></a>
-                    @endif
-                    @if (config('site.social.instagram'))
-                        <a href="{{ config('site.social.instagram') }}" target="_blank" aria-label="Instagram"><i
-                                class="fab fa-instagram"></i></a>
-                    @endif
-                    @if (config('site.social.youtube'))
-                        <a href="{{ config('site.social.youtube') }}" target="_blank" aria-label="YouTube"><i
-                                class="fab fa-youtube"></i></a>
-                    @endif
-                    @if (config('site.social.twitter'))
-                        <a href="{{ config('site.social.twitter') }}" target="_blank" aria-label="Twitter/X"><i
-                                class="fab fa-twitter"></i></a>
-                    @endif
-                    @if (config('site.social.linkedin'))
-                        <a href="{{ config('site.social.linkedin') }}" target="_blank" aria-label="LinkedIn"><i
-                                class="fab fa-linkedin-in"></i></a>
-                    @endif
+                {{-- Social --}}
+                <div class="mob-sidebar-social">
+                    <span class="mob-social-label">Follow Us</span>
+                    <div class="mob-social-icons">
+                        @if (config('site.social.facebook'))
+                            <a href="{{ config('site.social.facebook') }}" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        @endif
+                        @if (config('site.social.instagram'))
+                            <a href="{{ config('site.social.instagram') }}" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        @endif
+                        @if (config('site.social.youtube'))
+                            <a href="{{ config('site.social.youtube') }}" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        @endif
+                        @if (config('site.social.twitter'))
+                            <a href="{{ config('site.social.twitter') }}" target="_blank" aria-label="Twitter/X"><i class="fab fa-twitter"></i></a>
+                        @endif
+                        @if (config('site.social.linkedin'))
+                            <a href="{{ config('site.social.linkedin') }}" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        @endif
+                    </div>
                 </div>
             </div>
-        </div>{{-- /mob-main-panel --}}
+        </div>{{-- /mob-main --}}
 
-        {{-- ── SUB panels (generated from navMenuItems with children) ── --}}
-        @php $subIdx = 0; @endphp
+        {{-- ── LEVEL-1 PANELS (nav items with children) ───────────── --}}
         @foreach ($navMenuItems as $item)
             @if ($item->children->isNotEmpty())
-                @php $subIdx++; @endphp
-                <div class="mob-panel mob-sub-panel" id="mob-sp-{{ $subIdx }}">
+                <div class="mob-nav-panel" data-panel="mob-sp-{{ $item->id }}">
                     <div class="mob-subpanel-head">
-                        <label for="msub-{{ $subIdx }}" class="mob-back-btn"><i
-                                class="fas fa-chevron-left"></i> Back</label>
+                        <button class="mob-back-btn" data-pop><i class="fas fa-chevron-left"></i> Back</button>
                         <span class="mob-subpanel-title">{{ $item->name }}</span>
                     </div>
-                    <ul class="mob-subnav-list">
-                        @foreach ($item->children as $child)
-                            @if ($child->children->isNotEmpty())
-                                <li class="dropdown-submenu">
-                                    <a class="mob-subnav-link dropdown-submenu-toggle" href="#">
-                                        {{ $child->name }} <i class="fas fa-chevron-right"></i>
-                                    </a>
-                                    <ul class="dropdown-submenu-menu mob-subnav-deep">
-                                        @foreach ($child->children as $grandchild)
-                                            <li><a href="{{ $grandchild->href }}">{{ $grandchild->name }}</a></li>
-                                        @endforeach
-                                    </ul>
+                    <div class="mob-nav-scroll">
+                        <ul class="mob-subnav-list">
+                            @foreach ($item->children as $child)
+                                <li>
+                                    @if ($child->children->isNotEmpty())
+                                        <button class="mob-subnav-link" data-push="mob-sp-{{ $child->id }}">
+                                            <span>{{ $child->name }}</span>
+                                            <i class="fas fa-chevron-right mob-sub-chevron"></i>
+                                        </button>
+                                    @else
+                                        <a href="{{ $child->href }}">{{ $child->name }}</a>
+                                    @endif
                                 </li>
-                            @else
-                                <li><a href="{{ $child->href }}">{{ $child->name }}</a></li>
-                            @endif
-                        @endforeach
-                    </ul>
+                            @endforeach
+                        </ul>
+                    </div>
                 </div>
+
+                {{-- ── LEVEL-2 PANELS (grandchildren) ─────────────── --}}
+                @foreach ($item->children as $child)
+                    @if ($child->children->isNotEmpty())
+                        <div class="mob-nav-panel" data-panel="mob-sp-{{ $child->id }}">
+                            <div class="mob-subpanel-head">
+                                <button class="mob-back-btn" data-pop><i class="fas fa-chevron-left"></i> Back</button>
+                                <span class="mob-subpanel-title">{{ $child->name }}</span>
+                            </div>
+                            <div class="mob-nav-scroll">
+                                <ul class="mob-subnav-list">
+                                    @foreach ($child->children as $grandchild)
+                                        <li><a href="{{ $grandchild->href }}">{{ $grandchild->name }}</a></li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </div>
+                    @endif
+                @endforeach
             @endif
         @endforeach
 
-    </div>{{-- /mob-panels-wrapper --}}
+        {{-- ── GALLERY PANEL ───────────────────────────────────────── --}}
+        <div class="mob-nav-panel" data-panel="mob-sp-gallery">
+            <div class="mob-subpanel-head">
+                <button class="mob-back-btn" data-pop><i class="fas fa-chevron-left"></i> Back</button>
+                <span class="mob-subpanel-title"><i class="fas fa-images" style="margin-right:8px;"></i>Gallery</span>
+            </div>
+            <div class="mob-nav-scroll">
+                <ul class="mob-subnav-list">
+                    <li><a href="{{ route('gallery-infrastructure.get') }}"><i class="fas fa-building me-2"></i>Infrastructure</a></li>
+                    <li><a href="{{ route('gallery-school-events.get') }}"><i class="fas fa-calendar-alt me-2"></i>Events &amp; Activities</a></li>
+                    <li><a href="{{ route('gallery-annual-functions.get') }}"><i class="fas fa-star me-2"></i>Annual Functions</a></li>
+                    <li><a href="{{ route('gallery-news-clippings.get') }}"><i class="fas fa-newspaper me-2"></i>News Clippings</a></li>
+                </ul>
+            </div>
+        </div>
+
+        {{-- ── QUICK LINKS PANEL ────────────────────────────────────── --}}
+        <div class="mob-nav-panel" data-panel="mob-sp-quicklinks">
+            <div class="mob-subpanel-head">
+                <button class="mob-back-btn" data-pop><i class="fas fa-chevron-left"></i> Back</button>
+                <span class="mob-subpanel-title"><i class="fas fa-link" style="margin-right:8px;"></i>Quick Links</span>
+            </div>
+            <div class="mob-nav-scroll">
+                <ul class="mob-subnav-list">
+                    <li><a href="{{ route('blogs.get') }}"><i class="fas fa-pen-nib me-2"></i>Blogs</a></li>
+                    <li><a href="{{ route('events.get') }}"><i class="fas fa-calendar-alt me-2"></i>Events</a></li>
+                    <li><a href="{{ route('downloads-list.get') }}"><i class="fas fa-download me-2"></i>Downloads</a></li>
+                    <li><a href="{{ route('faq.get') }}"><i class="fas fa-question-circle me-2"></i>FAQs</a></li>
+                    <li><a href="{{ route('testimonials.get') }}"><i class="fas fa-comment-dots me-2"></i>Opinion That Matters</a></li>
+                    <li><a href="{{ route('job-form.get') }}"><i class="fas fa-briefcase me-2"></i>Careers</a></li>
+                </ul>
+            </div>
+        </div>
+
+    </div>{{-- /mob-nav-panels-container --}}
 
 </nav>
 
@@ -332,3 +368,69 @@
 </div>
 {{-- ══ END MOBILE HEADER ════════════════════════════════════════════ --}}
 {{-- ══ END MOBILE HEADER ════════════════════════════════════════════ --}}
+
+{{-- ── Mobile push-nav JS (no dependencies) ───────────────────────── --}}
+<script>
+(function () {
+    var container = document.querySelector('.mob-nav-panels-container');
+    if (!container) return;
+
+    var stack = ['mob-main'];
+
+    function getPanel(id) {
+        return container.querySelector('[data-panel="' + id + '"]');
+    }
+
+    function activate(entering, leaving, direction) {
+        container.querySelectorAll('.mob-nav-panel').forEach(function (p) {
+            p.removeAttribute('data-active');
+            p.removeAttribute('data-prev');
+        });
+        if (leaving && direction === 'forward') {
+            leaving.setAttribute('data-prev', '');
+        }
+        if (entering) entering.setAttribute('data-active', '');
+    }
+
+    container.addEventListener('click', function (e) {
+        // Push forward
+        var pushBtn = e.target.closest('[data-push]');
+        if (pushBtn) {
+            var id       = pushBtn.dataset.push;
+            var entering = getPanel(id);
+            var leaving  = getPanel(stack[stack.length - 1]);
+            if (!entering) return;
+            stack.push(id);
+            activate(entering, leaving, 'forward');
+            return;
+        }
+        // Pop back
+        var popBtn = e.target.closest('[data-pop]');
+        if (popBtn && stack.length > 1) {
+            var leavingId = stack.pop();
+            var leaving   = getPanel(leavingId);
+            var entering  = getPanel(stack[stack.length - 1]);
+            activate(entering, leaving, 'back');
+        }
+    });
+
+    // Reset to main panel when sidebar is closed
+    var toggle = document.getElementById('mob-menu-toggle');
+    if (toggle) {
+        toggle.addEventListener('change', function () {
+            if (!this.checked) {
+                var delay = 350; // match sidebar close transition
+                setTimeout(function () {
+                    stack = ['mob-main'];
+                    container.querySelectorAll('.mob-nav-panel').forEach(function (p) {
+                        p.removeAttribute('data-active');
+                        p.removeAttribute('data-prev');
+                    });
+                    var main = getPanel('mob-main');
+                    if (main) main.setAttribute('data-active', '');
+                }, delay);
+            }
+        });
+    }
+}());
+</script>

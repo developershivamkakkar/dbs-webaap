@@ -36,6 +36,12 @@ use App\Http\Controllers\FrontendTransferCertificateController;
 use App\Http\Controllers\admin\TransferCertificateController;
 use App\Http\Controllers\FrontendAchievementController;
 use App\Http\Controllers\admin\AchievementController;
+use App\Http\Controllers\FrontendFaqController;
+use App\Http\Controllers\admin\FaqController;
+use App\Http\Controllers\admin\SiteSettingController;
+use App\Http\Controllers\admin\LandingPageController;
+use App\Http\Controllers\FrontendTestimonialController;
+use App\Http\Controllers\admin\TestimonialController;
 
 // Frontend Web Routes
 Route::middleware(['loadAnnouncements'])->group(function () {
@@ -65,6 +71,12 @@ Route::middleware(['loadAnnouncements'])->group(function () {
     // Achievements Routes
     Route::get('achievements', [FrontendAchievementController::class, 'index'])->name('achievements.get');
 
+    // FAQ Routes
+    Route::get('faq', [FrontendFaqController::class, 'index'])->name('faq.get');
+
+    // Testimonials (Opinions That Matter) Routes
+    Route::get('opinions-that-matter', [FrontendTestimonialController::class, 'index'])->name('testimonials.get');
+
     // Transfer Certificate Routes
     Route::get('transfer-certificate', [FrontendTransferCertificateController::class, 'index'])->name('tc.index');
     Route::post('transfer-certificate/search', [FrontendTransferCertificateController::class, 'search'])->name('tc.search');
@@ -89,11 +101,11 @@ Route::middleware(['loadAnnouncements'])->group(function () {
     Route::get('admissions', [FrontendPageController::class, 'admissions_landing_page'])->name('admissions.landing.get');
 
 
+        // Job Enquiry Form
+        Route::get('job-enquiry', [FrontendJobController::class, 'index'])->name('job-form.get');
+        Route::post('job-enquiry', [FrontendJobController::class, 'store'])->name('job.store');
 });
 
-// Job Enquiry Form
-Route::get('job-enquiry', [FrontendJobController::class, 'index'])->name('job-form.get');
-Route::post('job-enquiry', [FrontendJobController::class, 'store'])->name('job.store');
 
 
 Route::get('sitemap.xml', [SitemapController::class, 'index'])->name('sitemap');
@@ -192,9 +204,18 @@ Route::group(['prefix' => 'admin'], function () {
         Route::delete('menu-item/{menuItem}', [MenuItemController::class, 'destroy'])->name('menu-items.destroy');
         Route::post('menu-items/reorder', [MenuItemController::class, 'reorder'])->name('menu-items.reorder');
 
-        //Page Editor Routes
+        // Site Settings
+        Route::get('site-settings', [SiteSettingController::class, 'index'])->name('admin.site-settings.index');
+        Route::post('site-settings', [SiteSettingController::class, 'save'])->name('admin.site-settings.save');
+
+        // Landing Page Editor
+        Route::get('landing-page', [LandingPageController::class, 'index'])->name('admin.landing-page.index');
+        Route::post('landing-page', [LandingPageController::class, 'save'])->name('admin.landing-page.save');
+
+        // Page Editor Routes
         Route::get('page-editor', [PageEditorController::class, 'dependent_dropdown'])->name('dependent-dropdown');
         Route::get('sub-menus/{parent_id}', [PageEditorController::class, 'getSubMenus']);
+        Route::get('page/data/{menuItemId}', [PageEditorController::class, 'getPageData'])->name('page.data');
         Route::get('page/show', [PageEditorController::class, 'show'])->name('page.show');
         Route::post('page/save', [PageEditorController::class, 'save'])->name('page.save');
         Route::post('/page-editor/upload-image', [PageEditorController::class, 'upload'])->name('ckeditor.upload');
@@ -203,6 +224,18 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('achievements', [AchievementController::class, 'index'])->name('admin.achievements.index');
         Route::post('achievements', [AchievementController::class, 'store'])->name('admin.achievements.store');
         Route::delete('achievements/{id}', [AchievementController::class, 'delete'])->name('admin.achievements.delete');
+
+        // Testimonials Admin Routes
+        Route::get('testimonials', [TestimonialController::class, 'index'])->name('admin.testimonials.index');
+        Route::post('testimonials', [TestimonialController::class, 'store'])->name('admin.testimonials.store');
+        Route::put('testimonials/{id}', [TestimonialController::class, 'update'])->name('admin.testimonials.update');
+        Route::delete('testimonials/{id}', [TestimonialController::class, 'delete'])->name('admin.testimonials.delete');
+
+        // FAQ Admin Routes
+        Route::get('faqs', [FaqController::class, 'index'])->name('admin.faqs.index');
+        Route::post('faqs', [FaqController::class, 'store'])->name('admin.faqs.store');
+        Route::put('faqs/{id}', [FaqController::class, 'update'])->name('admin.faqs.update');
+        Route::delete('faqs/{id}', [FaqController::class, 'delete'])->name('admin.faqs.delete');
 
         // Transfer Certificate Admin Routes
         Route::get('transfer-certificates', [TransferCertificateController::class, 'index'])->name('admin.tc.index');

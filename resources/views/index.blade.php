@@ -646,12 +646,331 @@
     </div>
 
 
+    {{-- ── Opinions That Matter Section ──────────────────────────── --}}
+    @if ($homeTestimonials->isNotEmpty())
+    <section class="hp-opinions-section py-5">
+        <div class="container">
+
+            {{-- Header --}}
+            <div class="hp-opinions-header" data-aos="fade-up">
+                <div>
+                    <span class="hp-opinions-label">Community Voices</span>
+                    <h2 class="hp-opinions-title">Opinion That Matters</h2>
+                </div>
+                <a href="{{ route('testimonials.get') }}" class="hp-opinions-view-all">
+                    View All &rarr;
+                </a>
+            </div>
+
+            {{-- Card grid --}}
+            <div class="hp-opinions-grid">
+                @foreach ($homeTestimonials as $t)
+                    @php
+                        $gradients = [
+                            'linear-gradient(135deg,#667eea,#764ba2)',
+                            'linear-gradient(135deg,#f093fb,#f5576c)',
+                            'linear-gradient(135deg,#4facfe,#00c6fb)',
+                            'linear-gradient(135deg,#43e97b,#38f9d7)',
+                            'linear-gradient(135deg,#fa709a,#ee7752)',
+                            'linear-gradient(135deg,#a18cd1,#fbc2eb)',
+                            'linear-gradient(135deg,#fccb90,#d57eeb)',
+                            'linear-gradient(135deg,#e0c3fc,#8ec5fc)',
+                        ];
+                        $bg = $gradients[abs(crc32($t->name)) % count($gradients)];
+                        $limit = 160;
+                        $full  = $t->content;
+                        $short = mb_strlen($full) > $limit;
+                    @endphp
+                    <div class="hp-opinion-card" data-aos="fade-up" data-aos-delay="{{ ($loop->index % 3) * 80 }}">
+
+                        {{-- Stars --}}
+                        <div class="hp-star-row">
+                            @for ($i = 1; $i <= 5; $i++)
+                                <i class="fas fa-star {{ $i <= $t->rating ? '' : 'hp-star-empty' }}"></i>
+                            @endfor
+                        </div>
+
+                        {{-- Quote --}}
+                        <p class="hp-opinion-content">&ldquo;{{ $short ? mb_substr($full, 0, $limit) . '…' : $full }}&rdquo;</p>
+
+                        @if ($short)
+                            <button class="hp-view-full-btn"
+                                data-full="{{ e($full) }}"
+                                data-name="{{ e($t->name) }}"
+                                data-designation="{{ e($t->designation) }}"
+                                data-date="{{ $t->testimonial_date ? \Carbon\Carbon::parse($t->testimonial_date)->format('d M Y') : '' }}"
+                                data-rating="{{ $t->rating }}"
+                                data-photo="{{ $t->photo_path ? Storage::url($t->photo_path) : '' }}"
+                                data-gradient="{{ $bg }}"
+                                data-initial="{{ strtoupper(substr($t->name, 0, 1)) }}"
+                                onclick="openHpReadMore(this)">
+                                <i class="fas fa-quote-right" style="font-size:.7rem;"></i> Full Opinion
+                            </button>
+                        @endif
+
+                        {{-- Author --}}
+                        <div class="hp-opinion-author">
+                            @if ($t->photo_path)
+                                <img src="{{ Storage::url($t->photo_path) }}"
+                                     alt="{{ $t->name }}"
+                                     class="hp-opinion-avatar"
+                                     loading="lazy">
+                            @else
+                                <div class="hp-opinion-avatar-placeholder" style="background:{{ $bg }}">
+                                    {{ strtoupper(substr($t->name, 0, 1)) }}
+                                </div>
+                            @endif
+                            <div>
+                                <div class="hp-opinion-name">{{ $t->name }}</div>
+                                @if ($t->designation)
+                                    <div class="hp-opinion-designation">{{ $t->designation }}</div>
+                                @endif
+                            </div>
+                        </div>
+
+                    </div>
+                @endforeach
+            </div>
+
+        </div>
+    </section>
+
+    {{-- Read-More Modal for homepage opinions --}}
+    <div class="modal fade" id="hpReadMoreModal" tabindex="-1" aria-labelledby="hpReadMoreModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
+            <div class="modal-content border-0 shadow-lg" style="border-radius:16px;overflow:hidden;">
+                <div class="modal-header border-0" style="background:var(--color-primary,#8c0305);padding:16px 20px;">
+                    <div id="hp-rm-stars" style="display:flex;gap:4px;align-items:center;"></div>
+                    <button type="button" class="btn-close btn-close-white" style="margin-left:auto;" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" style="padding:28px 28px 16px;">
+                    <p id="hp-rm-content" style="font-style:italic;color:#333;font-size:1.02rem;line-height:1.85;margin:0;"></p>
+                </div>
+                <div class="modal-footer border-0" style="padding:12px 24px 20px;justify-content:flex-start;gap:14px;">
+                    <div id="hp-rm-avatar" style="flex-shrink:0;"></div>
+                    <div>
+                        <div id="hp-rm-name" style="font-weight:700;font-size:.95rem;color:#1a1a1a;"></div>
+                        <div id="hp-rm-designation" style="font-size:.82rem;color:#888;margin-top:2px;"></div>
+                        <div id="hp-rm-date" style="font-size:.75rem;color:#aaa;margin-top:3px;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @endif
+
     <x-brochure-modal />
 
     <x-thank-you-modal id="brochureThankYouModal" title="🎉 Thank You!" message="Your brochure request is received!"
         download="{{ asset('brochures/dbels-brochure.pdf') }}" filename="dbels-brochure.pdf" />
 
+@endsection
 
+@section('styles')
+<style>
+    /* ── Homepage: Opinions That Matter ────────────────────────── */
+    .hp-opinions-section { background: #fff; }
 
+    .hp-opinions-header {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-bottom: 40px;
+    }
+    .hp-opinions-label {
+        display: inline-block;
+        font-size: .75rem;
+        font-weight: 700;
+        letter-spacing: .1em;
+        text-transform: uppercase;
+        color: var(--color-primary, #8c0305);
+        margin-bottom: 6px;
+    }
+    .hp-opinions-title {
+        font-family: 'Playfair Display', serif;
+        font-size: clamp(1.5rem, 3vw, 2.1rem);
+        font-weight: 800;
+        color: #1a1a1a;
+        margin: 0;
+        position: relative;
+        padding-bottom: 12px;
+    }
+    .hp-opinions-title::after {
+        content: '';
+        position: absolute;
+        bottom: 0; left: 0;
+        width: 48px; height: 3px;
+        background: var(--color-primary, #8c0305);
+        border-radius: 2px;
+    }
+    .hp-opinions-view-all {
+        font-size: .85rem;
+        font-weight: 600;
+        color: var(--color-primary, #8c0305);
+        text-decoration: none;
+        border: 1.5px solid var(--color-primary, #8c0305);
+        border-radius: 50px;
+        padding: 6px 18px;
+        transition: background .2s, color .2s;
+        white-space: nowrap;
+    }
+    .hp-opinions-view-all:hover {
+        background: var(--color-primary, #8c0305);
+        color: #fff;
+    }
 
+    .hp-opinions-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+        gap: 26px;
+    }
+
+    .hp-opinion-card {
+        background: #fafafa;
+        border-radius: 16px;
+        padding: 26px 22px 20px;
+        box-shadow: 0 4px 18px rgba(0,0,0,.06);
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        transition: transform .25s, box-shadow .25s;
+        position: relative;
+        border: 1px solid #f0f0f0;
+    }
+    .hp-opinion-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 32px rgba(140,3,5,.1);
+    }
+    .hp-opinion-card::before {
+        content: '\201C';
+        position: absolute;
+        top: 12px; right: 18px;
+        font-size: 5rem;
+        line-height: 1;
+        color: var(--color-primary, #8c0305);
+        opacity: .07;
+        font-family: Georgia, serif;
+        pointer-events: none;
+    }
+
+    .hp-star-row { display: flex; gap: 3px; }
+    .hp-star-row i { font-size: .78rem; color: #f0a500; }
+    .hp-star-row i.hp-star-empty { color: #ddd; }
+
+    .hp-opinion-content {
+        font-size: .93rem;
+        color: #444;
+        line-height: 1.75;
+        flex: 1;
+        font-style: italic;
+        display: -webkit-box;
+        -webkit-line-clamp: 4;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        margin: 0;
+    }
+
+    .hp-view-full-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 4px 14px;
+        border: 1.5px solid var(--color-primary, #8c0305);
+        border-radius: 50px;
+        background: transparent;
+        color: var(--color-primary, #8c0305);
+        font-size: .78rem;
+        font-weight: 600;
+        letter-spacing: .02em;
+        cursor: pointer;
+        transition: background .2s, color .2s;
+    }
+    .hp-view-full-btn:hover {
+        background: var(--color-primary, #8c0305);
+        color: #fff;
+    }
+
+    .hp-opinion-author { display: flex; align-items: center; gap: 10px; }
+    .hp-opinion-avatar {
+        width: 46px; height: 46px;
+        border-radius: 50%;
+        object-fit: cover;
+        flex-shrink: 0;
+        border: 3px solid #f3e9e9;
+    }
+    .hp-opinion-avatar-placeholder {
+        width: 46px; height: 46px;
+        border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+        flex-shrink: 0;
+        font-family: 'Playfair Display', serif;
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: #fff;
+        text-shadow: 0 1px 3px rgba(0,0,0,.25);
+        user-select: none;
+    }
+    .hp-opinion-name { font-weight: 700; font-size: .9rem; color: #1a1a1a; }
+    .hp-opinion-designation { font-size: .78rem; color: #888; }
+
+    /* Read-more modal avatar */
+    #hp-rm-avatar img,
+    #hp-rm-avatar div {
+        width: 52px; height: 52px;
+        border-radius: 50%;
+        object-fit: cover;
+        flex-shrink: 0;
+    }
+</style>
+@endsection
+
+@section('scripts')
+<script>
+    function openHpReadMore(btn) {
+        var full        = btn.dataset.full;
+        var name        = btn.dataset.name;
+        var designation = btn.dataset.designation || '';
+        var date        = btn.dataset.date || '';
+        var rating      = parseInt(btn.dataset.rating) || 0;
+        var photo       = btn.dataset.photo || '';
+        var gradient    = btn.dataset.gradient || '#8c0305';
+        var initial     = btn.dataset.initial || '?';
+
+        // Stars
+        var starsHtml = '';
+        for (var i = 1; i <= 5; i++) {
+            starsHtml += i <= rating
+                ? '<i class="fas fa-star" style="color:#f0a500;font-size:.82rem;"></i>'
+                : '<i class="fas fa-star" style="color:rgba(255,255,255,.4);font-size:.82rem;"></i>';
+        }
+        document.getElementById('hp-rm-stars').innerHTML = starsHtml;
+
+        // Content (use innerHTML so quotes render correctly)
+        document.getElementById('hp-rm-content').innerHTML =
+            '\u201C' + full.replace(/</g,'&lt;').replace(/>/g,'&gt;') + '\u201D';
+
+        // Avatar
+        var avatarEl = document.getElementById('hp-rm-avatar');
+        if (photo) {
+            avatarEl.innerHTML = '<img src="' + photo + '" alt="" style="width:52px;height:52px;border-radius:50%;object-fit:cover;border:3px solid #f3e9e9;">';
+        } else {
+            avatarEl.innerHTML = '<div style="width:52px;height:52px;border-radius:50%;background:' + gradient + ';display:flex;align-items:center;justify-content:center;font-family:serif;font-size:1.3rem;font-weight:700;color:#fff;flex-shrink:0;">' + initial + '</div>';
+        }
+
+        document.getElementById('hp-rm-name').textContent       = name;
+        document.getElementById('hp-rm-designation').textContent = designation;
+        document.getElementById('hp-rm-date').innerHTML =
+            date ? '<i class="far fa-calendar-alt" style="margin-right:4px;"></i>' + date : '';
+
+        // Reuse existing instance to avoid backdrop stacking (Bootstrap 5.0.x)
+        var el = document.getElementById('hpReadMoreModal');
+        var existing = bootstrap.Modal.getInstance(el);
+        if (existing) {
+            existing.dispose();
+        }
+        new bootstrap.Modal(el).show();
+    }
+</script>
 @endsection

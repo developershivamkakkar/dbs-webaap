@@ -20,6 +20,10 @@ class MenuItem extends Model
     {
         return $this->hasMany(self::class, 'parent_id');
     }
+    public function parent()
+    {
+        return $this->belongsTo(self::class, 'parent_id');
+    }
     public function pageContent()
     {
         return $this->hasOne(PageContent::class, 'menu_item_id');

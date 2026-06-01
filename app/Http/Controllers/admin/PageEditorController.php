@@ -13,7 +13,7 @@ class PageEditorController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('permission:module-page-editor', ['only' => ['dependent_dropdown', 'getSubMenus', 'show', 'save', 'upload']]);
+        $this->middleware('permission:module-page-editor', ['only' => ['dependent_dropdown', 'getSubMenus', 'show', 'getPageData', 'save', 'upload']]);
     }
     public function dependent_dropdown(Request $request)
     {
@@ -32,6 +32,22 @@ class PageEditorController extends Controller
         $subMenus = MenuItem::where('parent_id', $parentId)->pluck('name', 'id');
 
         return response()->json($subMenus);
+    }
+
+    public function getPageData($menuItemId)
+    {
+        $menuItem = MenuItem::with('pageContent')->find($menuItemId);
+
+        if (!$menuItem) {
+            return response()->json(['error' => 'Menu item not found'], 404);
+        }
+
+        return response()->json([
+            'id'      => $menuItem->id,
+            'name'    => $menuItem->name,
+            'title'   => $menuItem->pageContent->title ?? $menuItem->name,
+            'content' => $menuItem->pageContent->content ?? '',
+        ]);
     }
 
     public function show(Request $request)

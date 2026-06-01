@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\MenuItem;
+use App\Models\PageContent;
 use Illuminate\Http\Request;
 
 class MenuItemController extends Controller
@@ -34,12 +35,19 @@ class MenuItemController extends Controller
 
         $maxOrder = MenuItem::where('parent_id', $validated['parent_id'] ?? null)->max('display_order') ?? 0;
 
-        MenuItem::create([
+        $menuItem = MenuItem::create([
             'name'          => $validated['name'],
             'url'           => $validated['url'],
             'parent_id'     => $validated['parent_id'] ?? null,
             'display_order' => $maxOrder + 1,
             'status'        => $validated['status'],
+        ]);
+
+        // Auto-create a blank page for this menu item
+        PageContent::create([
+            'menu_item_id' => $menuItem->id,
+            'title'        => $menuItem->name,
+            'content'      => null,
         ]);
 
         return redirect()->route('menu-items.index')->with('success', 'Menu item created successfully!');

@@ -4,14 +4,14 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>DABELS-Admin Panel</title>
+    <title>{{ config('site.name') }} Admin Panel</title>
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <link rel="stylesheet" href="{{ asset('admin_assets/assets/plugins/fontawesome-free/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('admin_assets/assets/css/adminlte.min.css?v=3.2.0') }}">
     <link rel="stylesheet" href="{{ asset('admin_assets/assets/css/custom.css') }}">
-    <link rel="icon" type="image/x-icon" href="{{ asset('storage/assets/dbs.ico') }}">
+    <link rel="icon" type="image/x-icon" href="{{ asset(config('site.favicon')) }}">
 
     {{-- BOOTSTRAP 5 CDN --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -26,8 +26,23 @@
         }
 
         /* ── CKEditor WYSIWYG body — mirrors frontend .page-editor styles ── */
+        .ck.ck-editor {
+            width: 100% !important;
+            display: block !important;
+        }
+        .ck.ck-editor__main,
+        .ck.ck-editor__top,
+        .ck.ck-toolbar {
+            width: 100% !important;
+        }
         .ck-editor__editable_inline {
-            font-family: 'Poppins', sans-serif !important;
+            width: 100% !important;
+            box-sizing: border-box !important;
+            white-space: normal !important;
+            word-wrap: break-word !important;
+            overflow-wrap: break-word !important;
+            word-break: normal !important;
+            overflow-x: hidden !important;
             font-size: 15.5px !important;
             line-height: 1.85 !important;
             color: #2d2d2d !important;
@@ -147,7 +162,7 @@
             <a href="{{ route('admin.dashboard') }}" class="brand-link bg-white" style="height: 57px;">
                 <img src="{{ asset('storage/assets/dbs.png') }}" alt="dbels Logo"
                     class="brand-image img-circle elevation-1">
-                <span class="brand-text font-weight-dark">DBELS Admin Panel
+                <span class="brand-text font-weight-dark">{{ config('site.name') }} Admin Panel</span>
             </a>
 
             <!-- Sidebar -->
@@ -191,6 +206,22 @@
                                 <a href="{{ route('announcements.get') }}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p> Announcements</p>
+                                </a>
+                            </li>
+                        @endif
+                        @if (auth()->user()->can('module-faqs'))
+                            <li class="nav-item">
+                                <a href="{{ route('admin.faqs.index') }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>FAQs</p>
+                                </a>
+                            </li>
+                        @endif
+                        @if (auth()->user()->can('module-testimonials'))
+                            <li class="nav-item">
+                                <a href="{{ route('admin.testimonials.index') }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Opinion That Matters</p>
                                 </a>
                             </li>
                         @endif
@@ -313,6 +344,22 @@
                                 <a href="{{ route('dependent-dropdown') }}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Page Editor</p>
+                                </a>
+                            </li>
+                        @endif
+                        @if (auth()->user()->can('module-site-settings'))
+                            <li class="nav-item">
+                                <a href="{{ route('admin.site-settings.index') }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Website Settings</p>
+                                </a>
+                            </li>
+                        @endif
+                        @if (auth()->user()->can('module-landing-page'))
+                            <li class="nav-item">
+                                <a href="{{ route('admin.landing-page.index') }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Landing Page Editor</p>
                                 </a>
                             </li>
                         @endif

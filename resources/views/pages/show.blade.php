@@ -16,7 +16,13 @@
             <nav aria-label="breadcrumb" data-aos="fade-up" data-aos-delay="120">
                 <ol class="breadcrumb justify-content-center mb-0">
                     <li class="breadcrumb-item"><a href="{{ route('home.get') }}"><i class="fas fa-home me-1"></i>Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">{{ $title }}</li>
+                    @foreach ($breadcrumbs as $crumb)
+                        @if ($crumb['href'])
+                            <li class="breadcrumb-item"><a href="{{ $crumb['href'] }}">{{ $crumb['label'] }}</a></li>
+                        @else
+                            <li class="breadcrumb-item active" aria-current="page">{{ $crumb['label'] }}</li>
+                        @endif
+                    @endforeach
                 </ol>
             </nav>
         </div>

@@ -5,7 +5,7 @@
 /* ══ Page Hero ════════════════════════════════════════════════════ */
 .page-hero {
     position: relative;
-    background: linear-gradient(135deg, #6b0204 0%, #8c0305 45%, #b80407 100%);
+    background: linear-gradient(135deg, #5a0103 0%, #8C0305 45%, #b00407 100%);
     padding: 72px 20px 90px;
     text-align: center;
     overflow: hidden;
@@ -107,7 +107,7 @@
 /* Animated gradient accent bar */
 .page-content-accent-bar {
     height: 5px;
-    background: linear-gradient(90deg, #8c0305, #d2ae6d, #8c0305);
+    background: linear-gradient(90deg, #E31E25, #d2ae6d, #E31E25);
     background-size: 200% 100%;
     animation: accentSlide 4s linear infinite;
 }
@@ -134,7 +134,7 @@
 .page-content-body h5,
 .page-content-body h6 {
     font-family: 'Raleway', sans-serif;
-    color: #8c0305;
+    color:0305;
     margin-top: 1.8rem;
     margin-bottom: 0.8rem;
     font-weight: 700;
@@ -231,7 +231,7 @@
 }
 .page-content-body table th,
 .page-content-body figure.table table th {
-    background-color: #8c0305 !important;
+    background-color: #E31E25 !important;
     color: #ffffff !important;
     font-weight: 600;
     padding: 13px 16px;

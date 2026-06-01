@@ -7,6 +7,8 @@ use App\Models\Banner;
 use App\Models\MenuItem;
 use App\Models\Popup;
 use App\Models\Blog;
+use App\Models\LandingSetting;
+use App\Models\Testimonial;
 
 
 class FrontendHomePageController extends Controller
@@ -18,6 +20,8 @@ class FrontendHomePageController extends Controller
         $menuItems = MenuItem::all();
         $popups = Popup::where('status', 'active')->get();
         $blogs = Blog::where('status', 'published')->orderBy('created_at', 'desc')->take(4)->get();
-        return view('index', compact('banners', 'explorebanners', 'menuItems', 'popups', 'blogs'));
+        $lp = LandingSetting::allCached();
+        $homeTestimonials = Testimonial::active()->orderBy('sort_order')->latest()->take(8)->get();
+        return view('index', compact('banners', 'explorebanners', 'menuItems', 'popups', 'blogs', 'lp', 'homeTestimonials'));
     }
 }
