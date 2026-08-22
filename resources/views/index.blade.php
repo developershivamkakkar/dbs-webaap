@@ -1,10 +1,9 @@
 @extends('layouts.app')
 
-@section('title', 'Dbels- Best School in Panchkula & Tricity Chandigarh')
+@section('title', 'Dass and Brown World School (DBS) - Best School in Ferozepur')
 
 @section('meta-description',
-    'Dass & Brown Experiential Learning School (Dbels), the best school in Panchkula and
-    Chandigarh')
+    'Dass and Brown World School (DBS) is the Best School in Ferozepur.')
 
 
 @section('meta-keywords',
@@ -53,18 +52,8 @@
         </div>
     @endif
 
-    <!-- Floating Strip Right Bottom -->
-    <div class="floating-strip-right-bottom">
-        <!-- Open Modal -->
-        <a href="/brochure" class="btn btn-sm" data-bs-toggle="modal" data-bs-target="#brochureModal"
-            onclick="event.preventDefault();">
-            Download Brochure
-        </a>
-    </div>
-    <!-- Floating Strip Right -->
-    <div class="floating-strip-right">
-        <a class="btn btn-sm" target="_blank" href="https://admissions.dassandbrownschool.com/">Register Now</a>
-    </div>
+    
+    
 
     <!--Floating Strip Left-->
     <!--<div class="floating-left-strip">-->
@@ -118,7 +107,7 @@
     <!--                <form method="POST" action="{{ route('contact.store') }}" enctype="multipart/form-data">-->
     <!--                    @csrf-->
     <!--                    <div class="text-center">-->
-    <!--                        <img class="rounded" src="{{ asset('storage/assets/dbs.png') }}" alt="dbels-logo"-->
+    <!--                        <img class="rounded" src="{{ asset('storage/assets/dbs-logo.webp') }}" alt="dbels-logo"-->
     <!--                            style="width:100px;height:100px; background-color:#ffffff00; object-fit:contain;">-->
     <!--                    </div>-->
     <!--                    <div class="mb-2 mt-1">-->

@@ -92,6 +92,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('testimonials.get') }}">Opinion That Matters</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('contact') }}">Contact Us</a>
+            </li>
             <li class="nav-item ms-2">
                 <a class="nav-link header-apply-btn" href="{{ route('admissions.landing.get') }}">Apply Now</a>
             </li>

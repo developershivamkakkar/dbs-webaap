@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -25,7 +25,7 @@
             text-decoration: none;
         }
 
-        /* ── CKEditor WYSIWYG body — mirrors frontend .page-editor styles ── */
+        /* -- CKEditor WYSIWYG body � mirrors frontend .page-editor styles -- */
         .ck.ck-editor {
             width: 100% !important;
             display: block !important;
@@ -160,7 +160,7 @@
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
             <a href="{{ route('admin.dashboard') }}" class="brand-link bg-white" style="height: 57px;">
-                <img src="{{ asset('storage/assets/dbs.png') }}" alt="dbels Logo"
+                <img src="{{ asset('storage/assets/dbs-logo.webp') }}" alt="dbels Logo"
                     class="brand-image img-circle elevation-1">
                 <span class="brand-text font-weight-dark">{{ config('site.name') }} Admin Panel</span>
             </a>
@@ -384,7 +384,7 @@
         <!-- /.content-wrapper -->
 
         <footer class="main-footer">
-            <strong>Copyright &copy; 2024 </strong>All rights reserved. Developed with ❤ by developerShivam
+            <strong>Copyright &copy; 2024 </strong>All rights reserved. Developed with ? by developerShivam
         </footer>
         <!-- Control Sidebar -->
         <aside class="control-sidebar control-sidebar-dark">
@@ -418,37 +418,37 @@
     <script type="module">
         import {
             ClassicEditor,
-            /* ── Core ─────────────────────────────────────── */
+            /* -- Core --------------------------------------- */
             Essentials, Paragraph, SelectAll,
-            /* ── Text formatting ─────────────────────────── */
+            /* -- Text formatting --------------------------- */
             Bold, Italic, Underline, Strikethrough, Code,
             Subscript, Superscript, RemoveFormat,
-            /* ── Fonts ───────────────────────────────────── */
+            /* -- Fonts ------------------------------------- */
             Font, FontSize, FontFamily, FontColor, FontBackgroundColor,
-            /* ── Headings & structure ────────────────────── */
+            /* -- Headings & structure ---------------------- */
             Heading, HorizontalLine, PageBreak, BlockQuote,
-            /* ── Alignment & indent ──────────────────────── */
+            /* -- Alignment & indent ------------------------ */
             Alignment, Indent, IndentBlock,
-            /* ── Lists ───────────────────────────────────── */
+            /* -- Lists ------------------------------------- */
             List, ListProperties, TodoList,
-            /* ── Link ────────────────────────────────────── */
+            /* -- Link -------------------------------------- */
             Link, LinkImage, AutoLink,
-            /* ── Image ───────────────────────────────────── */
+            /* -- Image ------------------------------------- */
             Image, ImageCaption, ImageInsert, ImageResize,
             ImageResizeEditing, ImageResizeHandles,
             ImageStyle, ImageTextAlternative, ImageToolbar, ImageUpload,
             AutoImage, SimpleUploadAdapter,
-            /* ── Table ───────────────────────────────────── */
+            /* -- Table ------------------------------------- */
             Table, TableCaption, TableCellProperties,
             TableColumnResize, TableProperties, TableToolbar,
-            /* ── Media & code ────────────────────────────── */
+            /* -- Media & code ------------------------------ */
             MediaEmbed, CodeBlock,
-            /* ── Special characters ──────────────────────── */
+            /* -- Special characters ------------------------ */
             SpecialCharacters, SpecialCharactersArrows,
             SpecialCharactersCurrency, SpecialCharactersEssentials,
             SpecialCharactersLatin, SpecialCharactersMathematical,
             SpecialCharactersText,
-            /* ── Advanced ────────────────────────────────── */
+            /* -- Advanced ---------------------------------- */
             FindAndReplace, Highlight, ShowBlocks, SourceEditing,
             GeneralHtmlSupport, HtmlEmbed,
             Autoformat, TextTransformation,

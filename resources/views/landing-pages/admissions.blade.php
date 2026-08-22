@@ -1,4 +1,4 @@
-﻿@extends('layouts.app')
+@extends('layouts.app')
 @section('title', $lp['adm_page_title'] ?? 'Admissions | ' . config('site.name'))
 @section('meta-description', $lp['adm_meta_description'] ?? config('site.meta_description'))
 @section('meta-keywords', config('site.meta_keywords'))
@@ -6,7 +6,7 @@
 @section('styles')
 <link rel="stylesheet" href="{{ asset('css/pages/show.css') }}">
 <style>
-/* ── Hero ─────────────────────────────────────── */
+/* -- Hero --------------------------------------- */
 .adm-hero {
     background: linear-gradient(135deg, #5a0103 0%, #8c0305 55%, #b00407 100%);
     padding: 60px 0 80px;
@@ -111,7 +111,7 @@
 .adm-wave { line-height: 0; background: #8c0305; }
 .adm-wave svg { display: block; width: 100%; }
 
-/* ── Process ───────────────────────────────────── */
+/* -- Process ------------------------------------- */
 .adm-process { background: #f8fafc; padding: 80px 0 90px; }
 .adm-eyebrow  { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #8c0305; margin-bottom: 8px; display: block; }
 .adm-section-title { font-size: clamp(22px,3vw,32px); font-weight: 800; color: #1a2a4a; }
@@ -163,20 +163,15 @@
 @section('content')
 
     {{-- Floating buttons --}}
-    <div class="floating-strip-right-bottom">
-        <a href="{{ config('site.brochure_url') }}" class="btn btn-sm" target="_blank" rel="noopener noreferrer">Download Brochure</a>
-    </div>
-    <div class="floating-strip-right">
-        <a class="btn btn-sm" target="_blank" rel="noopener noreferrer"
-           href="{{ config('site.registration_url') ?: config('site.admissions_url') }}">Register Now</a>
-    </div>
+    
+    
     @if(config('site.whatsapp'))
     <a href="https://wa.me/91{{ config('site.whatsapp') }}" class="whatsapp-button" target="_blank" rel="noopener noreferrer">
         <i class="fab fa-whatsapp"></i> Contact Us
     </a>
     @endif
 
-    {{-- ── HERO ── --}}
+    {{-- -- HERO -- --}}
     <section class="adm-hero">
         <div class="container adm-hero-inner">
             <div class="row align-items-center gy-5">
@@ -185,10 +180,10 @@
                 <div class="col-lg-7" data-aos="fade-right">
                     <div class="adm-badge">
                         <i class="fas fa-star"></i>
-                        {{ $lp['lp_cta_badge'] ?? 'Admissions Open 2026–27' }}
+                        {{ $lp['lp_cta_badge'] ?? 'Admissions Open 2026�27' }}
                     </div>
                     <h1 class="adm-hero-title">
-                        {{ $lp['adm_hero_title'] ?? 'Admissions 2026–27' }}
+                        {{ $lp['adm_hero_title'] ?? 'Admissions 2026�27' }}
                     </h1>
                     <p class="adm-hero-text">
                         {{ $lp['adm_hero_subtitle'] ?? '' }}
@@ -267,7 +262,7 @@
         </svg>
     </div>
 
-    {{-- ── PROCESS ── --}}
+    {{-- -- PROCESS -- --}}
     <section class="adm-process">
         <div class="container">
             <div class="text-center" data-aos="fade-up">

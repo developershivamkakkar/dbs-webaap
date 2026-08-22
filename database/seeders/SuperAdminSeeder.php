@@ -53,6 +53,7 @@ class SuperAdminSeeder extends Seeder
             'module-page-editor',
             'module-resource-list',
             'module-manage-menu-items',
+            'delete menu-item',
         ];
 
         // Create permissions if they don't exist and assign them to the role

@@ -131,9 +131,7 @@ document.addEventListener('DOMContentLoaded', function () {
 <a href="https://wa.me/6284058009" class="whatsapp-button" target="_blank">
     <i class="fab fa-whatsapp"></i> Contact Us
 </a>
-<div class="floating-strip-right">
-    <a class="btn btn-sm" href="{{ route('admissions.landing.get') }}">Enquire Now</a>
-</div>
+
 
 {{-- Page Hero Banner --}}
 <div class="page-hero">
