@@ -1,18 +1,22 @@
 @extends('layouts.app')
 
-@section('title', 'Dass and Brown World School (DBS) - Best School in Ferozepur')
+@section('title', 'Dass & Brown World School (DBS) - Best School in Ferozepur, Punjab')
 
 @section('meta-description',
-    'Dass and Brown World School (DBS) is the Best School in Ferozepur.')
-
+    'Dass & Brown World School (DBS) is one of the best schools in Ferozepur, Punjab, offering quality education, holistic development, and a progressive learning environment for students.')
 
 @section('meta-keywords',
-    'Dbels, Dass and Brown School, Best School in Panchkula, Best School in Chandigarh, Top
-    Schools in Panchkula, Top Schools in Chandigarh, Best ICSE School Panchkula, Best ICSE School Chandigarh, Best Cambridge
-    School Panchkula, Cambridge Schools Chandigarh, International Schools Panchkula, International Schools Chandigarh, Best
-    K-12 School Panchkula, Finnish Model School Panchkula, , Experiential Learning School, Global Curriculum Schools, Early
-    Education Panchkula, Private Schools in Panchkula, English Medium School Panchkula, Dbels Panchkula, Dbels Chandigarh,
-    Dass & Brown Experiential Learning School')
+    'Dass & Brown World School, Dass and Brown World School, DBS Ferozepur, DBS World School Ferozepur,
+    Dass Brown School Ferozepur, Best School in Ferozepur, Best School in Ferozepur Punjab,
+    Top Schools in Ferozepur, Top School in Ferozepur, Best CBSE School in Ferozepur,
+    CBSE School in Ferozepur, CBSE Schools in Ferozepur Punjab, Best Senior Secondary School in Ferozepur,
+    Best English Medium School in Ferozepur, English Medium School Ferozepur,
+    Best K-12 School in Ferozepur, K-12 School Ferozepur, Private School in Ferozepur,
+    Schools in Ferozepur Punjab, Top CBSE School in Punjab, Quality Education in Ferozepur,
+    Holistic Education Ferozepur, Experiential Learning School Ferozepur,
+    Progressive School in Ferozepur, Modern School in Ferozepur,
+    Dass & Brown World School Punjab, Dass and Brown World School Punjab,
+    DBS Ferozepur Punjab, Best School Near Ferozepur, School Near Hussainiwala Road Ferozepur')
 
 @section('content')
 
