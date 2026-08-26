@@ -78,7 +78,7 @@ Route::middleware(['loadAnnouncements'])->group(function () {
     Route::get('opinions-that-matter', [FrontendTestimonialController::class, 'index'])->name('testimonials.get');
 
     // Transfer Certificate Routes
-    Route::get('transfer-certificate', [FrontendTransferCertificateController::class, 'index'])->name('tc.index');
+    Route::get('transfer-certificates', [FrontendTransferCertificateController::class, 'index'])->name('tc.index');
     Route::post('transfer-certificate/search', [FrontendTransferCertificateController::class, 'search'])->name('tc.search');
 
     // Downloads Routes
