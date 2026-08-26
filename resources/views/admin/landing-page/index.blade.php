@@ -142,6 +142,13 @@
                                           placeholder="Secure your child's future at D-Bels...">{{ old('adm_hero_subtitle', $settings['adm_hero_subtitle'] ?? '') }}</textarea>
                                 <span class="affects-badge">Tagline below the hero title</span>
                             </div>
+                            <div class="col-md-5">
+                                <label class="form-label">Badge Text (CTA)</label>
+                                <input type="text" name="lp_cta_badge" class="form-control"
+                                       value="{{ old('lp_cta_badge', $settings['lp_cta_badge'] ?? 'Admissions Open 2026–27') }}"
+                                       placeholder="Admissions Open 2026–27">
+                                <span class="affects-badge">Small badge above hero title</span>
+                            </div>
                         </div>
 
                         {{-- Process Steps --}}

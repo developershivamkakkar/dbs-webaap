@@ -30,7 +30,7 @@ class LandingPageController extends Controller
         $fields = [
             // Admissions page
             'adm_page_title', 'adm_meta_description',
-            'adm_hero_title', 'adm_hero_subtitle',
+            'adm_hero_title', 'adm_hero_subtitle', 'lp_cta_badge',
             'adm_step_1_icon', 'adm_step_1_title', 'adm_step_1_text',
             'adm_step_2_icon', 'adm_step_2_title', 'adm_step_2_text',
             'adm_step_3_icon', 'adm_step_3_title', 'adm_step_3_text',
