@@ -393,9 +393,14 @@ main.hero-page { padding-top: 0; }
 
 /* ── Downloads / Resource table ─────────────────────────────────── */
 .tbl-header-muted {
-    background-color: var(--color-primary);
-    color: var(--color-text-white);
-    font-weight: 600;
+    background-color: var(--color-primary) !important;
+    color: var(--color-text-white) !important;
+    font-weight: 600 !important;
+}
+.tbl-header-muted th {
+    background-color: var(--color-primary) !important;
+    color: var(--color-text-white) !important;
+    border: none !important;
 }
 .btn-download {
     background-color: var(--color-secondary);
