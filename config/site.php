@@ -40,9 +40,23 @@ return [
     'email_info'       => 'info@dassandbrownschool.com',
     'whatsapp'         => '9115992918',
 
+    // -- Admissions -----------------------------------------------------------
+    'admissions_badge' => 'Admissions Open 2026–27',
 
-    // -- Google Maps -----------------------------------------------------------
-    'maps_embed' => 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d6843.300736527657!2d74.589186!3d30.952328!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3919c2096f2c2fbb%3A0xe1dcf838799b421!2sDass%20%26%20Brown%20World%20School!5e0!3m2!1sen!2sus!4v1787729763890!5m2!1sen!2sus',
+    // -- Social Media ----------------------------------------------------------
+    'social' => [
+        'facebook'  => 'https://www.facebook.com/dbelschd',
+        'instagram' => 'https://www.instagram.com/dbelschd',
+        'linkedin'  => 'https://www.linkedin.com/company/dbelschd',
+        'twitter'   => 'https://x.com/dbelschd',
+        'youtube'   => 'https://www.youtube.com/@dbelschd',
+    ],
+
+    // -- Admissions / Documents ------------------------------------------------
+    'admissions_url'   => 'https://admissions.dassandbrownschool.com/',
+    'brochure_url'     => '/brochures/dbels-brochure.pdf',
+    'enquiry_url'      => '',
+    'registration_url' => 'https://admissions.dassandbrownschool.com/',
 
     // -- Analytics (environment-specific � set in .env) ------------------------
     'google_analytics'   => env('GOOGLE_ANALYTICS_ID',   ''),

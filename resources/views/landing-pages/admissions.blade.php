@@ -163,8 +163,8 @@
 @section('content')
 
     {{-- Floating buttons --}}
-    
-    
+
+
     @if(config('site.whatsapp'))
     <a href="https://wa.me/91{{ config('site.whatsapp') }}" class="whatsapp-button" target="_blank" rel="noopener noreferrer">
         <i class="fab fa-whatsapp"></i> Contact Us
@@ -180,7 +180,7 @@
                 <div class="col-lg-7" data-aos="fade-right">
                     <div class="adm-badge">
                         <i class="fas fa-star"></i>
-                        {{ $lp['lp_cta_badge'] ?? 'Admissions Open 2026�27' }}
+                        {{ config('site.admissions_badge') }}
                     </div>
                     <h1 class="adm-hero-title">
                         {{ $lp['adm_hero_title'] ?? 'Admissions 2026�27' }}
