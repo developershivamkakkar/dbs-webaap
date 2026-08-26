@@ -37,18 +37,16 @@ return [
 
     'phone'            => '01632-248099',
     'email_admissions' => 'dbsfzr@gmail.com',
-    'email_info'       => 'info@dassandbrownschool.com',
+    'email_info'       => 'dbsfzr@gmail.com',
     'whatsapp'         => '9115992918',
 
-    // -- Admissions -----------------------------------------------------------
-    'admissions_badge' => 'Admissions Open 2026–27',
 
     // -- Social Media ----------------------------------------------------------
     'social' => [
         'facebook'  => 'https://www.facebook.com/dassnbrown/',
         'instagram' => 'https://www.instagram.com/dassnbrown/',
         'twitter'   => 'https://x.com/dassnbrown',
-        'youtube'   => 'https://www.youtube.com/@dbelschd',
+        'youtube'   => 'https://www.youtube.com/@dassnbrown',
     ],
 
     // -- Admissions / Documents ------------------------------------------------
