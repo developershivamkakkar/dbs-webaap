@@ -338,7 +338,7 @@ LEARNING AT THE FRONTIER.                              <span class="fw-bold expl
                                 <img src="{{ asset('storage/assets/admissions.png') }}" alt="admissions" loading="lazy">
                             </div>
                             <h3 class="hlt-card-title">Admission Enquiry</h3>
-                            <p class="hlt-card-desc">Begin your child's journey. Apply now for the 2026–27 academic year.</p>
+                            <p class="hlt-card-desc">Begin your child's journey. Apply now for the 2027-28 academic year.</p>
                             <span class="hlt-card-cta">Enquire Now <i class="fas fa-arrow-right"></i></span>
                         </div>
                     </a>

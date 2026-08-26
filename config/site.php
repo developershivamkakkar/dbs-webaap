@@ -52,8 +52,8 @@ return [
     // -- Admissions / Documents ------------------------------------------------
     'admissions_url'   => '',
     'brochure_url'     => '',
-    'enquiry_url'      => '',
-    'registration_url' => '',
+    'enquiry_url'      => 'https://dbs.schoolpad.in/enquiryManager/onlineOpenAdmissionForm/17',
+    'registration_url' => 'https://dbs.schoolpad.in/enquiryManager/onlineAdmission/17',
 
     // -- Analytics (environment-specific � set in .env) ------------------------
     'google_analytics'   => env('GOOGLE_ANALYTICS_ID',   ''),
