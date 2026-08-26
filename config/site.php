@@ -13,8 +13,8 @@
 return [
 
     // -- Identity -------------------------------------------------------------
-    'name'          => 'DBELS',
-    'full_name'     => 'Dass & Brown Experiential Learning School',
+    'name'          => 'DBS',
+    'full_name'     => 'Dass & Brown World School',
     'tagline'       => 'Legacy Beckons...',
     'url'           => env('APP_URL'),
 
@@ -26,13 +26,13 @@ return [
 
     // -- Contact ---------------------------------------------------------------
     'address' => [
-        'line1'       => 'Dass & Brown Experiential Learning School',
+        'line1'       => 'Dass & Brown World School',
         'line2'       => 'Hussainiwala Border Road, Basti Sunwan',
-        'city'        => 'Ferozepur City',
+        'city'        => 'Ferozepur',
         'state'       => 'Punjab',
         'country'     => 'India',
         'postal_code' => '152001',
-        'full'        => 'Dass & Brown Experiential Learning School, Hussainiwala Border Road, Basti Sunwan',
+        'full'        => 'Dass & Brown World School, Hussainiwala Border Road, Basti Sunwan',
     ],
 
     'phone'            => '01632-248099',
@@ -40,23 +40,9 @@ return [
     'email_info'       => 'info@dassandbrownschool.com',
     'whatsapp'         => '9115992918',
 
-    // -- Social Media ----------------------------------------------------------
-    'social' => [
-        'facebook'  => 'https://www.facebook.com/dbelschd',
-        'instagram' => 'https://www.instagram.com/dbelschd',
-        'linkedin'  => 'https://www.linkedin.com/company/dbelschd',
-        'twitter'   => 'https://x.com/dbelschd',
-        'youtube'   => 'https://www.youtube.com/@dbelschd',
-    ],
-
-    // -- Admissions / Documents ------------------------------------------------
-    'admissions_url'   => 'https://admissions.dassandbrownschool.com/',
-    'brochure_url'     => '/brochures/dbels-brochure.pdf',
-    'enquiry_url'      => '',
-    'registration_url' => 'https://admissions.dassandbrownschool.com/',
 
     // -- Google Maps -----------------------------------------------------------
-    'maps_embed' => 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d27437.776806266076!2d76.850724!3d30.726212!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390f933babb16cbf%3A0x3d75ae038c87404a!2sD-%20Bels%20(Dass%20%26%20Brown%20Experiential%20Learning%20School)!5e0!3m2!1sen!2sin!4v1734506744997!5m2!1sen!2sin',
+    'maps_embed' => 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d6843.300736527657!2d74.589186!3d30.952328!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3919c2096f2c2fbb%3A0xe1dcf838799b421!2sDass%20%26%20Brown%20World%20School!5e0!3m2!1sen!2sus!4v1787729763890!5m2!1sen!2sus',
 
     // -- Analytics (environment-specific � set in .env) ------------------------
     'google_analytics'   => env('GOOGLE_ANALYTICS_ID',   ''),
@@ -68,12 +54,12 @@ return [
     'color_accent'    => '#d2ae6d',
 
     // -- SEO -------------------------------------------------------------------
-    'meta_description' => 'Dass & Brown Experiential Learning School (D-Bels) is an innovative educational institution '
-        . 'in Panchkula, Tricity Chandigarh � offering Finnish, entrepreneurship, legacy, and '
+    'meta_description' => 'Dass & Brown World School (D-Bels) is the best school in Ferozepur, Punjab, India. '
+        . 'An innovative educational institution offering Finnish, entrepreneurship, legacy, and '
         . 'international pathways including Cambridge AS/A Level, IB Diploma, and ICSE.',
 
-    'meta_keywords' => 'Best School in Chandigarh, Best School in Panchkula, D-BELS, Dass and Brown School, '
-        . 'Top Schools Panchkula, ICSE School Chandigarh, Cambridge School Panchkula, '
-        . 'International School Panchkula, Experiential Learning School',
+    'meta_keywords' => 'Best School in Ferozepur, Best School in Punjab, D-BELS, Dass and Brown World School, '
+        . 'Top Schools Ferozepur, Best School in India, ICSE School Ferozepur, Cambridge School Ferozepur, '
+        . 'International School Ferozepur, World School, Experiential Learning School',
 
 ];

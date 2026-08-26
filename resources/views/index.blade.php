@@ -52,8 +52,8 @@
         </div>
     @endif
 
-    
-    
+
+
 
     <!--Floating Strip Left-->
     <!--<div class="floating-left-strip">-->
@@ -207,7 +207,7 @@
                 <div class="col-lg-7 text-white" data-aos="fade-right">
                     <span class="adm-badge"><i class="fas fa-star me-1"></i> Admissions Open 2026–27</span>
                     <h2 class="adm-title mt-3">Give Your Child the Education They Deserve</h2>
-                    <p class="adm-subtitle">Dass &amp; Brown Experiential Learning School is now accepting applications. Secure your child's future with world-class, future-ready learning.</p>
+                    <p class="adm-subtitle">Dass &amp; Brown World School is now accepting applications. Secure your child's future with world-class, future-ready learning.</p>
 
                     <div class="d-flex flex-wrap gap-3 mt-4">
                         <button class="adm-btn-primary npfWidgetButton npfWidget-cbdb663e4ed49cb2c31d9bd90e87b6c7">
@@ -265,16 +265,13 @@
                         </div>
                         <div class="col-9 col-sm-9 col-md-9 col-lg-9" data-aos="fade-up" data-aos-delay="400">
                             <h2 class="explore-potential-heading mb-4">
-                                SHAPING FUTURE LEADERS THROUGH
-                                <span class="fw-bold explore-text">INNOVATION & TECHNOLOGY</span>
+LEARNING AT THE FRONTIER.                              <span class="fw-bold explore-text"> LEADING WITH PURPOSE</span>
                             </h2>
                         </div>
                     </div>
                     <p class="explore-potential-text" data-aos="fade-up" data-aos-delay="500">
-                        Located in the serene environment of Panchkula, (Tri City) , <br> Dass & Brown Experiential Learning
-                        School is designed to cultivate competent & conscientious individuals who can think ahead of their
-                        times. Dbels is designed with modern architecture & is going to be the first of its kind, centrally
-                        air-conditioned, state-of-the-art, Wi-Fi enabled, digitally equipped campus.
+                       Nestled near the historic Hussainiwala Border in Ferozepur, Dass & Brown World School is a place where strong values meet bold aspirations. Inspired by a land that reminds us of courage, sacrifice and service, DBS nurtures young minds to think fearlessly, act responsibly and dream beyond boundaries.
+
                     </p>
                 </div>
                 <div class="col-lg-6 h-100 shadow-sm p-1" data-aos="fade-left" data-aos-delay="600">
@@ -325,7 +322,7 @@
             <div class="row text-center mb-5">
                 <div class="col">
                     <span class="hlt-eyebrow">Quick Access</span>
-                    <h2 class="section-title mt-2">Explore More with Dbels</h2>
+                    <h2 class="section-title mt-2">Explore More with DBS</h2>
                     <p class="text-light opacity-75">Everything you need, just a click away</p>
                 </div>
             </div>

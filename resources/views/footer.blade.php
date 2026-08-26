@@ -13,7 +13,7 @@
             <div class="d-flex flex-column flex-md-row align-items-center justify-content-between gap-3">
                 <div>
                     <h5 class="footer-cta-title mb-1">Ready to Join {{ config('site.name') }}?</h5>
-                    <p class="footer-cta-subtitle mb-0">Book a campus visit and experience the D-BELS difference.</p>
+                    <p class="footer-cta-subtitle mb-0">Book a campus visit and experience the DBS difference.</p>
                 </div>
                 <div class="d-flex gap-2 flex-wrap justify-content-center">
                     <a href="{{ config('site.admissions_url') }}" target="_blank" rel="noopener noreferrer"
