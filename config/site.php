@@ -45,18 +45,17 @@ return [
 
     // -- Social Media ----------------------------------------------------------
     'social' => [
-        'facebook'  => 'https://www.facebook.com/dbelschd',
-        'instagram' => 'https://www.instagram.com/dbelschd',
-        'linkedin'  => 'https://www.linkedin.com/company/dbelschd',
-        'twitter'   => 'https://x.com/dbelschd',
+        'facebook'  => 'https://www.facebook.com/dassnbrown/',
+        'instagram' => 'https://www.instagram.com/dassnbrown/',
+        'twitter'   => 'https://x.com/dassnbrown',
         'youtube'   => 'https://www.youtube.com/@dbelschd',
     ],
 
     // -- Admissions / Documents ------------------------------------------------
-    'admissions_url'   => 'https://admissions.dassandbrownschool.com/',
-    'brochure_url'     => '/brochures/dbels-brochure.pdf',
+    'admissions_url'   => '',
+    'brochure_url'     => '',
     'enquiry_url'      => '',
-    'registration_url' => 'https://admissions.dassandbrownschool.com/',
+    'registration_url' => '',
 
     // -- Analytics (environment-specific � set in .env) ------------------------
     'google_analytics'   => env('GOOGLE_ANALYTICS_ID',   ''),
@@ -68,12 +67,8 @@ return [
     'color_accent'    => '#d2ae6d',
 
     // -- SEO -------------------------------------------------------------------
-    'meta_description' => 'Dass & Brown World School (D-Bels) is the best school in Ferozepur, Punjab, India. '
-        . 'An innovative educational institution offering Finnish, entrepreneurship, legacy, and '
-        . 'international pathways including Cambridge AS/A Level, IB Diploma, and ICSE.',
+    'meta_description' => 'Dass & Brown World School (D-Bels) is the best school in Ferozepur, Punjab, India.',
 
-    'meta_keywords' => 'Best School in Ferozepur, Best School in Punjab, D-BELS, Dass and Brown World School, '
-        . 'Top Schools Ferozepur, Best School in India, ICSE School Ferozepur, Cambridge School Ferozepur, '
-        . 'International School Ferozepur, World School, Experiential Learning School',
+    'meta_keywords'    => 'Dass & Brown World School, D-Bels, best school in Ferozepur, Punjab, India, admissions open, world-class education, future-ready learning',
 
 ];
