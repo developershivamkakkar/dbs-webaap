@@ -66,8 +66,7 @@
 
 
     <!-- Floating WhatsApp Button -->
-    <a href="https://api.whatsapp.com/send/?phone=9115992924&text=Hello%20Dass%20and%20Brown%20Experiential%20Learning%20School&type=phone_number&app_absent=0"
-        class="whatsapp-button" target="_blank">
+    <a href="https://wa.me/{{ config('site.whatsapp') }}" class="whatsapp-button" target="_blank" rel="noopener noreferrer">
         <i class="fab fa-whatsapp"></i>
         Contact Us
     </a>
@@ -209,9 +208,9 @@
 
                 {{-- Left: text + buttons --}}
                 <div class="col-lg-7 text-white" data-aos="fade-right">
-                    <span class="adm-badge"><i class="fas fa-star me-1"></i> Admissions Open 2027-28</span>
+                    <span class="adm-badge"><i class="fas fa-star me-1"></i> {{ config('site.admissions_badge') }}</span>
                     <h2 class="adm-title mt-3">Give Your Child the Education They Deserve</h2>
-                    <p class="adm-subtitle">Dass &amp; Brown World School is now accepting applications. Secure your child's future with world-class, future-ready learning.</p>
+                    <p class="adm-subtitle">{{ config('site.full_name') }} is now accepting applications. Secure your child's future with world-class, future-ready learning.</p>
 
                     <div class="d-flex flex-wrap gap-3 mt-4">
                         <button class="adm-btn-primary npfWidgetButton npfWidget-cbdb663e4ed49cb2c31d9bd90e87b6c7">
