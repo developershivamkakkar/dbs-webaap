@@ -331,7 +331,7 @@ LEARNING AT THE FRONTIER.                              <span class="fw-bold expl
             </div>
             <div class="row g-4">
                 <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
-                    <a href="https://admissions.dassandbrownschool.com/" class="hlt-card">
+                    <a href="{{ config('site.admissions_url') }}" class="hlt-card">
                         <div class="hlt-card-top-bar"></div>
                         <div class="hlt-card-body">
                             <div class="hlt-card-icon-wrap">
