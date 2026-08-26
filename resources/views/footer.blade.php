@@ -59,13 +59,6 @@
                     </div>
                 </div>
 
-                @if(config('site.whatsapp'))
-                <a href="https://wa.me/91{{ config('site.whatsapp') }}"
-                   target="_blank" rel="noopener noreferrer" class="footer-whatsapp-btn">
-                    <i class="fab fa-whatsapp me-2"></i>Chat on WhatsApp
-                </a>
-                @endif
-
                 <div class="footer-social-icons">
                     @if(config('site.social.facebook'))
                     <a href="{{ config('site.social.facebook') }}" target="_blank" rel="noopener noreferrer"
