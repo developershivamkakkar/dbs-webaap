@@ -8,7 +8,7 @@
         Contact Us
     </a>
 
-    
+
 
     {{-- Page Hero Banner --}}
     <div class="page-hero">
@@ -53,10 +53,8 @@
                                                     <td>{{ $list->resource_name }}</td>
                                                     <td>{{ $list->session }}</td>
                                                     <td>
-                                                        <button class="btn btn-download">
-                                                            <a class="btn-download" target="_blank"
-                                                                href="{{ Storage::url($list->resource_file_path) }}">View/Download</a>
-                                                        </button>
+                                                        <a class="btn btn-download" target="_blank"
+                                                            href="{{ Storage::url($list->resource_file_path) }}">View/Download</a>
                                                     </td>
                                                 </tr>
                                             @endforeach
