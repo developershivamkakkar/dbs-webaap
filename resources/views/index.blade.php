@@ -205,7 +205,7 @@
 
                 {{-- Left: text + buttons --}}
                 <div class="col-lg-7 text-white" data-aos="fade-right">
-                    <span class="adm-badge"><i class="fas fa-star me-1"></i> Admissions Open 2026–27</span>
+                    <span class="adm-badge"><i class="fas fa-star me-1"></i> Admissions Open 2027-28</span>
                     <h2 class="adm-title mt-3">Give Your Child the Education They Deserve</h2>
                     <p class="adm-subtitle">Dass &amp; Brown World School is now accepting applications. Secure your child's future with world-class, future-ready learning.</p>
 
