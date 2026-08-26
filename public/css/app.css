@@ -404,7 +404,7 @@ main.hero-page { padding-top: 0; }
 }
 .btn-download {
     background-color: var(--color-secondary);
-    color: var(--color-text-white) !important;
+    color: #ffffff !important;
     border: none;
     text-decoration: none !important;
     font-weight: 600;
@@ -415,7 +415,7 @@ main.hero-page { padding-top: 0; }
 }
 .btn-download:hover {
     background-color: var(--color-secondary-dark);
-    color: var(--color-text-white) !important;
+    color: #ffffff !important;
     text-decoration: none !important;
 }
 
